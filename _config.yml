@@ -1,3 +1,4 @@
 theme: jekyll-theme-minimal
 name: Kristen Hyman
 markdown: kramdown
+permalink: /cs5520_project/:year/:month/:day/:title.html
