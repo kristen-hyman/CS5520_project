@@ -8,32 +8,34 @@ Lesson 1.1 main takeaways:
 3. You must edit the AndroidManifest.xml file to add features components and permissions to your Android app. 
 4. You can use the Emulator to create a virtual device to run your app. The emulator shows you what the formating/functionality will look like on an actual device.
 
-Lesson 1.1 Github Link:
+Lesson 1.1 Github Link: 
+https://github.com/kristen-hyman/CS5520_project/tree/main/edu.neu.madsea.kristenhyman.lesson1_1/HelloWorld
 
-Lesson 1.1 Screenshot:
+Lesson 1.1 Screenshot: 
+
 <img width="750" alt="HW 01 1 - Hello World App Screenshot" src="https://user-images.githubusercontent.com/33691856/134040130-fa75cd8a-239f-4c71-8aaf-aa14bf2809bb.png">
 
 Lesson 1.1 HW Questions:
 
 Question 1
 What is the name of the layout file for the main activity?
-activity_main.xml
+`activity_main.xml`
 
 Question 2
 What is the name of the string resource that specifies the application's name?
-app_name
+`app_name`
 
 
 Question 3
 Which tool do you use to create a new emulator?
-AVD Manager
+`AVD Manager`
 
 Question 4
 Assume that your app includes this logging statement:
 Log.i("MainActivity", "MainActivity layout is complete");
 You see the statement "MainActivity layout is complete" in the Logcat pane if the Log level menu is set to which of the following? (Hint: multiple answers are OK.)
-Verbose
-Debug
+`Verbose`
+`Debug`
 
 
 Lesson 1.2A/1.2B takeaways:
@@ -43,8 +45,10 @@ Lesson 1.2A/1.2B takeaways:
 
 
 Lesson 1.2A/1.2B Github Link:
+https://github.com/kristen-hyman/CS5520_project/tree/main/edu.neu.madsea.kristenhyman.lesson1_2/HelloToast
 
-Lesson 1.2A/1.2B Screenshot:
+Lesson 1.2A/1.2B Screenshot:  
+
 <img width="405" alt="HW 01 2 - Linear Layout" src="https://user-images.githubusercontent.com/33691856/134043289-641ffa85-2187-4205-813f-66c62f042b07.png">
 
 
@@ -52,23 +56,23 @@ Lesson 1.2A/1.2B HW Questions:
 Question 1
 Which two layout constraint attributes on the Zero Button position it vertically equal distance between the other two Button elements? (Pick 2 answers.)
 
-app:layout_constraintBottom_toTopOf="@+id/button_count"
-app:layout_constraintTop_toBottomOf="@+id/button_toast"
+`app:layout_constraintBottom_toTopOf="@+id/button_count"`
+`app:layout_constraintTop_toBottomOf="@+id/button_toast"`
 
 Question 2
 Which layout constraint attribute on the Zero Button positions it horizontally in alignment with the other two Button elements?
-app:layout_constraintLeft_toLeftOf="parent"
+`app:layout_constraintLeft_toLeftOf="parent"`
 
 Question 3
 What is the correct signature for a method used with the android:onClick XML attribute?
-public void callMethod(View view)
+`public void callMethod(View view)`
 
 Question 4
 The click handler for the Count Button starts with the following method signature:
-public void countUp(View view)
+`public void countUp(View view)`
 
 Which of the following techniques is more efficient to use within this handler to change the Button element's background color? Choose one:
-Use the view parameter that is passed to the click handler with setBackgroundColor(): view.setBackgroundColor()
+`Use the view parameter that is passed to the click handler with setBackgroundColor(): view.setBackgroundColor()`
 
 
 Lesson 1.3 takeaways:
@@ -77,9 +81,23 @@ Lesson 1.3 takeaways:
 
 Lesson 1.3 Github Link:
 
-Lesson 1.3 Screenshots:
-<img width="470" alt="HW 01 3 - Scrolling" src="https://user-images.githubusercontent.com/33691856/134054619-386baeed-3e94-4095-9c92-60807e3c6350.png">
+https://github.com/kristen-hyman/CS5520_project/tree/main/edu.neu.madsea.kristenhyman.lesson1_3/ScrollingText
+
+Lesson 1.3 Screenshots:  
+<img width="470" alt="HW 01 3 - Scrolling" src="https://user-images.githubusercontent.com/33691856/134054619-386baeed-3e94-4095-9c92-60807e3c6350.png">. 
 <img width="467" alt="HW 01 3 - TextView" src="https://user-images.githubusercontent.com/33691856/134054633-bbb96c91-3f62-48d5-bbca-d6209a78e7eb.png">
 
 
 Lesson 1.3 HW Questions:
+
+Question 1
+How many views can you use within a ScrollView? Choose one:
+`One view or one view group`
+
+Question 2
+Which XML attribute do you use in a LinearLayout to show views side by side? Choose one:
+`android:orientation="horizontal"`
+
+Question 3
+Which XML attribute do you use to define the width of the LinearLayout inside the scrolling view? Choose one:
+`android:layout_width="match_parent"`
