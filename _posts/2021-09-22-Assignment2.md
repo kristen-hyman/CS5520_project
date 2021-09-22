@@ -13,6 +13,11 @@ Screenshots:
 
 
 TwoActivitiesLifeCycle Summary:
+In this assignment, we navigated between activities and inside and outside of our app, to view different states in the Activity lifecycle. 
+The lifecycle methods are onCreate(), onStart(), onPause(), onRestart(), onResume(), onStop(), onDestroy().
+A key point noted in this assignment is that when orientation changes, sometimes activity data can be lost. To avoid this, you can
+restore the instance state in onCreate().
+
 
 Homework:
 Question 1
