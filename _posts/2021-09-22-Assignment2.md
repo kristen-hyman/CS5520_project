@@ -40,6 +40,11 @@ Which Activity lifecycle methods are best to use for saving data before the A
 
 Implicit Intents Summary:
 
+Github Links:  
+Implicit Intents: https://github.com/kristen-hyman/CS5520_project/tree/main/ImplicitIntents2
+
+Receiver: https://github.com/kristen-hyman/CS5520_project/tree/main/ImplicitIntentsReceiver
+
 In this homework, we used implicit intent to activate an Activity if we knew the action, but not the specific app or Activity that would handle that action.
  If there is more than one available Activity that can handle the action, the system provides a chooser so the user can pick one.
 
