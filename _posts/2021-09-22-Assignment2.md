@@ -20,6 +20,8 @@ restore the instance state in onCreate().
 
 
 Homework:
+Github: https://github.com/kristen-hyman/CS5520_project/tree/main/CounterHomework
+
 Question 1
 If you run the homework app before implementing onSaveInstanceState(), what happens if you rotate the device? Choose one:
 `The counter is reset to 0, but the contents of the EditText is preserved.`
@@ -35,3 +37,16 @@ When in the Activity lifecycle is onSaveInstanceState() called? Choose one:
 Question 4
 Which Activity lifecycle methods are best to use for saving data before the Activity is finished or destroyed? Choose one:
 `onPause() or onStop()`
+
+Implicit Intents Summary:
+In this homework, we used implicit intent to activate an Activity if we knew the action, but not the specific app or Activity that would handle that action.
+ If there is more than one available Activity that can handle the action, the system provides a chooser so the user can pick one.
+
+Screenshots:  
+<img width="404" alt="Screen Shot 2021-09-22 at 2 24 22 PM" src="https://user-images.githubusercontent.com/33691856/134424340-9be65340-b03c-4375-a403-e6f075e57e56.png">
+  
+<img width="403" alt="Screen Shot 2021-09-22 at 2 21 49 PM" src="https://user-images.githubusercontent.com/33691856/134424348-6d0fb43d-17f4-4b67-a12d-91e575e5e080.png">
+
+
+
+
