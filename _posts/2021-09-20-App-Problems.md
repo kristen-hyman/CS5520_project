@@ -42,7 +42,6 @@ Base Knowledge: I assume the user knows what they are focusing on resolving in t
 Required Knowledge: The user will have to know how to follow the directions/steps in the recommended solution and will have to know how to buy the items they may need to fulfil the repair/etc. if they do not have all of the tools on hand.
 
 Artifacts:
-Artifacts:
 Mobile phone or Laptop/website
 
 Information:  
@@ -57,12 +56,17 @@ Nearby professionals that can support the user if needed
 
 A persona and scenario:  18-30 year old that is travelling/going on a trip alone or with friends and has items they want to check off their 'bucket-list' either from things they decided, or things their friends/family sent to them to do.
 
-Trigger: 
+Trigger: The trigger is that the individual is going on a trip or hitting some sort of milestone they want to commmemorate with a bucket-list of memories.
 
-Desired Outcome: The desired outcome is a page with posts that are either shared or private that include personal bucket-list items/memories or bucket-list items friends sent to you to complete on trips/ etc.
+Desired Outcome: The desired outcome is a page with posts that are either shared or private that include personal bucket-list items/memories or bucket-list items friends sent to you to complete on trips/ etc and the pictures/evidence that the user successfully experienced the recommended place/experience
 
-Base Knowledge:
+Base Knowledge: The user must know where they are going and must be able to share that with others if they are interested in other people's input on fun/exciting things to do on the trip.
 
 Required Knowledge:
 
 Artifacts:
+Mobile phone or Laptop/website
+
+Information:  
+Location of the recommendation from friends/family
+Reviews of the places/recommendations they were given (to decide if it is worth their time to check out)
