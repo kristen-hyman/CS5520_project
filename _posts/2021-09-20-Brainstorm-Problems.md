@@ -53,4 +53,5 @@ Potential problems to solve with an app:
 
 
 Refer here for expanded information on three of these topics:  
-https://github.com/kristen-hyman/CS5520_project/blob/gh-pages/_posts/2021-09-20-AppProblems.md
+https://kristen-hyman.github.io/CS5520_project/2021/09/20/App-Problems.html
+
