@@ -68,5 +68,5 @@ Artifacts:
 Mobile phone or Laptop/website
 
 Information:  
-Location of the recommendation from friends/family
+Location of the recommendation from friends/family  
 Reviews of the places/recommendations they were given (to decide if it is worth their time to check out)
