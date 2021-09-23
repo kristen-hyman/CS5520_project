@@ -45,12 +45,12 @@ Artifacts:
 Artifacts:
 Mobile phone or Laptop/website
 
-Information: 
-DIY steps to resolve query
-What caused the issue they are researching
-Multiple solutions to solve
-The estimated time it will take to fix without professional help
-Nearby professionals that can support the user if needed
+Information:  
+DIY steps to resolve query  
+What caused the issue they are researching  
+Multiple solutions to solve  
+The estimated time it will take to fix without professional help  
+Nearby professionals that can support the user if needed  
 
 
 keep track of memories of bucketlist items from travels (public or private)
