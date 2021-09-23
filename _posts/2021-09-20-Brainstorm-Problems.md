@@ -50,3 +50,7 @@ Potential problems to solve with an app:
 48. analyzing spending to recommend ways to save money
 49. help with camping recommendations based on skill level, where you're going, other reviews
 50. keep track of memories of bucketlist items from travels (public or private)
+
+
+Refer here for expanded information on three of these topics:  
+https://github.com/kristen-hyman/CS5520_project/blob/gh-pages/_posts/2021-09-20-AppProblems.md
