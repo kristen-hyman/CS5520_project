@@ -53,11 +53,16 @@ The estimated time it will take to fix without professional help
 Nearby professionals that can support the user if needed  
 
 
-keep track of memories of bucketlist items from travels (public or private)
+### Keep track of memories of bucketlist items from travels (public or private)
 
-A persona and scenario: 
-Trigger:
-Desired Outcome:
+A persona and scenario:  18-30 year old that is travelling/going on a trip alone or with friends and has items they want to check off their 'bucket-list' either from things they decided, or things their friends/family sent to them to do.
+
+Trigger: 
+
+Desired Outcome: The desired outcome is a page with posts that are either shared or private that include personal bucket-list items/memories or bucket-list items friends sent to you to complete on trips/ etc.
+
 Base Knowledge:
+
 Required Knowledge:
+
 Artifacts:
