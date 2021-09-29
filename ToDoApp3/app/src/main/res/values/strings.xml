@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ToDo: KH</string>
+    <string name="addTask">Click here to add task!</string>
+    <string name="text_header">Add New Task Information</string>
+    <string name="editText_main">Enter Your Message Here</string>
+    <string name="submit_task_info">Click here to Submit Task Info!</string>
+    <string name="addTaskName">Enter Task Name Here</string>
+    <string name="text_header_reply">Reply Received</string>
+
+</resources>
