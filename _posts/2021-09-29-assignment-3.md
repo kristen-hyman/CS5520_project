@@ -7,8 +7,10 @@ The user is able to add as many tasks as they would like, and each task has a ch
 
 ## Screenshots
 
-<img src=https://user-images.githubusercontent.com/33691856/135345758-27087ad9-bd07-4bcb-94d5-8e4d684aaf37.png width="200" height="400" > <img src=https://user-images.githubusercontent.com/33691856/135345781-594ebd9d-899e-46fb-b3ce-5e2c1361853e.png width="200" height="400" >
-<img src=https://user-images.githubusercontent.com/33691856/135345792-7be39473-39bb-46cf-9ff6-37045ba96f7d.png width="200" height="400" > <img src=https://user-images.githubusercontent.com/33691856/135345833-13967ca9-539e-419e-ba5d-bcf7ae5a0f8b.png width="200" height="400" >
+<img width="200" height="400" src="https://user-images.githubusercontent.com/33691856/135345758-27087ad9-bd07-4bcb-94d5-8e4d684aaf37.png" > 
+<img width="200" height="400" src="https://user-images.githubusercontent.com/33691856/135345781-594ebd9d-899e-46fb-b3ce-5e2c1361853e.png" >
+<img width="200" height="400" src="https://user-images.githubusercontent.com/33691856/135345792-7be39473-39bb-46cf-9ff6-37045ba96f7d.png" > 
+<img width="200" height="400" src="https://user-images.githubusercontent.com/33691856/135345833-13967ca9-539e-419e-ba5d-bcf7ae5a0f8b.png" >
   
  
 
