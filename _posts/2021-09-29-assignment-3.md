@@ -17,3 +17,4 @@ The user is able to add as many tasks as they would like, and each task has a ch
 I am working on implementing the functionality for the users to be able to update/edit previously added tasks on their To-Do List. 
 Currently, when a task is added there is no onClick functionality to get back into the data for updates.
 In my next iteration, I will be refactoring my code and likely updating the format of the checklist to allow for this change. 
+ 
