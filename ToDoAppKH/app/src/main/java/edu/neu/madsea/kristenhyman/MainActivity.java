@@ -1,69 +1,74 @@
 package edu.neu.madsea.kristenhyman;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-
-
+import edu.neu.madsea.kristenhyman.databinding.ActivityMainBinding;
+/**
+ * adapted from Adrienne
+ * https://github.com/ahope/cs5520_project/blob/main/todo-list/app/src/main/java/edu/northeastern/cs5520/todo_adrienne
+ */
 public class MainActivity extends AppCompatActivity {
 
-    //Add a public constant to define the key for type of response you're interested in:
-    public static final int TEXT_REQUEST = 1;
-
-    //Add  variables to hold the task list
-    ArrayAdapter adapter;
-    ListView listView;
-    ArrayList<String> taskList;
-
-    private static final String LOG_TAG =
-            MainActivity.class.getSimpleName();
-
-    public static final String EXTRA_MESSAGE =
-            "edu.neu.madsea.kristenhyman.ToDoAppKH.MainActivity.extra.MESSAGE";
-    private EditText mMessageEditText;
-    private ActivityResultLauncher<Intent> launchSecondActivity;
+    private AppBarConfiguration appBarConfiguration;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        listView=findViewById(R.id.listView);
-        taskList = new ArrayList<>();
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-    }
+        setSupportActionBar(binding.toolbar);
 
-    public void launchSecondActivity(View view) {
-        Log.d(LOG_TAG, "Button clicked!");
-        Intent intent = new Intent(this, AddNewTask.class);
-        startActivityForResult(intent, TEXT_REQUEST);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NewToDoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
-    public void onActivityResult(int requestCode,
-                                 int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == TEXT_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                String task =
-                        data.getStringExtra(AddNewTask.EXTRA_REPLY);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
-                taskList.add(task);
-                adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_checked, taskList);
-                listView.setAdapter(adapter);
-                listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-            }
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 }

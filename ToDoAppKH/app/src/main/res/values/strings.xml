@@ -7,5 +7,6 @@
     <string name="submit_task_info">Click here to Submit Task Info!</string>
     <string name="addTaskName">Enter Task Name Here</string>
     <string name="text_header_reply">Reply Received</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
