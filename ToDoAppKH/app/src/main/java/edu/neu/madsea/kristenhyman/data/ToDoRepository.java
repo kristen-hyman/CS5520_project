@@ -21,6 +21,7 @@ public class ToDoRepository implements Iterable<ToDo>{
 
     private ToDoRepository() {
         todoSet = new ArrayList<ToDo>();
+
     }
 
     public List<ToDo> asList() {
@@ -30,6 +31,7 @@ public class ToDoRepository implements Iterable<ToDo>{
     public static ToDoRepository getAllTodos() {
         if (singleton == null) {
             singleton = new ToDoRepository();
+            addToDo(ToDo.createTodo("task1", "details1"));
         }
         return singleton;
     }
