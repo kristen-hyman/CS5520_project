@@ -16,6 +16,8 @@ import edu.neu.madsea.kristenhyman.databinding.ActivityMainListViewBinding;
  */
 public class MainActivity_ListView extends AppCompatActivity {
 
+    private ActivityMainListViewBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,7 @@ public class MainActivity_ListView extends AppCompatActivity {
 //        setContentView(R.layout.activity_main_list_view);
 
         // Use the ViewBinding instead of the layout directly
-        ActivityMainListViewBinding binding = ActivityMainListViewBinding.inflate(getLayoutInflater());
+        binding = ActivityMainListViewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.recyclerViewMain.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerViewMain.scrollToPosition(0);
@@ -36,6 +38,17 @@ public class MainActivity_ListView extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
+
+    @Override
+    //tell the adapter that the data has changed
+    // activity is created, populated, plus button to to open a new activity and pauses the existing
+    // crates a new instance and then goes away... because we go back to the original activity is it resumed
+    // so - add this to tell teh adapter that the data changed so it repopulates UI
+    public void onResume() {
+        super.onResume();
+        binding.recyclerViewMain.getAdapter().notifyDataSetChanged();
+    }
+
+
 }
