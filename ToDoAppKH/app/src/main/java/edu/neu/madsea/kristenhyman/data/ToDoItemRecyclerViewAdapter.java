@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -22,20 +24,12 @@ import edu.neu.madsea.kristenhyman.databinding.ToDoItemViewBinding;
  * In this case, it "knows" the ToDoRepo (or, some collection of ToDo objects), and when is appropriate,
  * maps a specific ToDo object to a ViewHolder to display that ToDo instance.
  */
-public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemViewHolder> {
+public class ToDoItemRecyclerViewAdapter extends ListAdapter<ToDo, ToDoItemViewHolder> {
 
-    private List<ToDoViewModel> models = new ArrayList<>();
 
-    /**
-     * Adapter constructor
-     *
-     * @param viewModels
-     *         A collection of viewmodels which will contain the data that will be used in each ViewHolder
-     */
-    public ToDoItemRecyclerViewAdapter(final List<ToDoViewModel> viewModels) {
-        if (viewModels != null) {
-            this.models.addAll(viewModels);
-        }
+
+    public ToDoItemRecyclerViewAdapter(@NonNull DiffUtil.ItemCallback<ToDo> diffCallback) {
+        super(diffCallback);
     }
 
     @NonNull
@@ -49,17 +43,23 @@ public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemVi
     @Override
     public void onBindViewHolder(@NonNull ToDoItemViewHolder holder, int position) {
         // This is how we bind the UI to a specific task
-        ToDoViewModel currentModel = models.get(position);
+        holder.bind(getItem(position));
 
+        //ToDoViewModel currentModel = models.get(position);
         //((ToDoItemViewHolder) holder).bind(currentModel.getTodoCreated());
-
-        //How do I get the todo item to bind?
-       ((ToDoItemViewHolder) holder).bind(models.get(position));
+       //((ToDoItemViewHolder) holder).bind(models.get(position));
     }
+    public static class TodoDiff extends DiffUtil.ItemCallback<ToDo> {
 
-    @Override
-    public int getItemCount() {
-        return models.size();
+        @Override
+        public boolean areItemsTheSame(@NonNull ToDo oldItem, @NonNull ToDo newItem) {
+            return oldItem == newItem;
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull ToDo oldItem, @NonNull ToDo newItem) {
+            return oldItem.getTaskTitle().equals(newItem.getTaskTitle());
+        }
     }
 
 }

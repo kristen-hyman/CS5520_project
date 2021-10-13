@@ -21,6 +21,7 @@ public class MainActivity_ListView extends AppCompatActivity {
 
     private ActivityMainListViewBinding binding;
     private List<ToDoViewModel> models = new ArrayList<>();
+    private ToDoViewModel mToDoViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,15 @@ public class MainActivity_ListView extends AppCompatActivity {
         setContentView(binding.getRoot());
         binding.recyclerViewMain.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerViewMain.scrollToPosition(0);
-        binding.recyclerViewMain.setAdapter(new ToDoItemRecyclerViewAdapter(models));
+
+        final ToDoItemRecyclerViewAdapter adapter =
+                new ToDoItemRecyclerViewAdapter(new ToDoItemRecyclerViewAdapter.TodoDiff());
+
+        mToDoViewModel.getAllToDos().observe(this, todos -> {
+            adapter.submitList(todos);
+        });
+
+        binding.recyclerViewMain.setAdapter(adapter);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
