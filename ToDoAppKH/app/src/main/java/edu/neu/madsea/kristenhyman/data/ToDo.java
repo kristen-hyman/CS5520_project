@@ -1,5 +1,10 @@
 package edu.neu.madsea.kristenhyman.data;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -7,14 +12,21 @@ import java.util.Set;
  * adapted from Adrienne
  * https://github.com/ahope/cs5520_project/blob/main/todo-list/app/src/main/java/edu/northeastern/cs5520/todo_adrienne/data/ToDo.java
  */
+
+@Entity(tableName = "todo_table")
 public class ToDo {
 
+
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "taskTitle")
     private String taskTitle;
+
+    @ColumnInfo(name = "description")
+    @NonNull
     private String description;
-    private Set tags;
-    private LocalDateTime deadline;
-    private boolean remindMe;
-    private LocalDateTime reminderDateTime;
+
+
 
     public String getTaskTitle() {
         return taskTitle;
@@ -32,37 +44,6 @@ public class ToDo {
         this.description = description;
     }
 
-    public Set getTags() {
-        return tags;
-    }
-
-    public void setTags(Set tags) {
-        this.tags = tags;
-    }
-
-    public LocalDateTime getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(LocalDateTime deadline) {
-        this.deadline = deadline;
-    }
-
-    public boolean isRemindMe() {
-        return remindMe;
-    }
-
-    public void setRemindMe(boolean remindMe) {
-        this.remindMe = remindMe;
-    }
-
-    public LocalDateTime getReminderDateTime() {
-        return reminderDateTime;
-    }
-
-    public void setReminderDateTime(LocalDateTime reminderDateTime) {
-        this.reminderDateTime = reminderDateTime;
-    }
 
     public static ToDo createTodo(String title, String detail) {
         ToDo todo = new ToDo();
@@ -70,4 +51,6 @@ public class ToDo {
         todo.setDescription(detail);
         return todo;
     }
+
+
 }

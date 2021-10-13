@@ -1,24 +1,43 @@
 package edu.neu.madsea.kristenhyman.data;
 
-import androidx.annotation.NonNull;
+import android.app.Application;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import androidx.lifecycle.LiveData;
+
 import java.util.List;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 /**
  * adapted from Adrienne
  * https://github.com/ahope/cs5520_project/blob/main/todo-list/app/src/main/java/edu/northeastern/cs5520/todo_adrienne/data/ToDoItemRepository.java
  */
 
-public class ToDoRepository implements Iterable<ToDo>{
+public class ToDoRepository {
+    private static LiveData<List<ToDo>> mAllToDos;
+    private static ToDoDao mToDoDao;
 
+    ToDoRepository(Application application) {
+        ToDoDatabase db = ToDoDatabase.getDatabase(application);
+        mToDoDao = db.toDoDao();
+        mAllToDos = mToDoDao.getAlphabetizedWords();
+    }
+
+    // Room executes all queries on a separate thread.
+    // Observed LiveData will notify the observer when the data has changed.
+    public static LiveData<List<ToDo>> getAllTodos() {
+        return mAllToDos;
+    }
+
+    public static void insert(ToDo todo) {
+        ToDoDatabase.databaseWriteExecutor.execute(() -> {
+            mToDoDao.insert(todo);
+        });
+    }
+}
+
+
+    /**
     private static List<ToDo> todoSet;
-
     private static ToDoRepository singleton;
-
     private ToDoRepository() {
         todoSet = new ArrayList<ToDo>();
 
@@ -57,3 +76,4 @@ public class ToDoRepository implements Iterable<ToDo>{
         return todoSet.spliterator();
     }
 }
+     **/

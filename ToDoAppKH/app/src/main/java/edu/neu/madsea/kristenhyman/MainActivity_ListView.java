@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.neu.madsea.kristenhyman.data.ToDoItemRecyclerViewAdapter;
 import edu.neu.madsea.kristenhyman.databinding.ActivityMainListViewBinding;
 /**
@@ -17,6 +20,7 @@ import edu.neu.madsea.kristenhyman.databinding.ActivityMainListViewBinding;
 public class MainActivity_ListView extends AppCompatActivity {
 
     private ActivityMainListViewBinding binding;
+    private List<ToDoViewModel> models = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,7 @@ public class MainActivity_ListView extends AppCompatActivity {
         setContentView(binding.getRoot());
         binding.recyclerViewMain.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerViewMain.scrollToPosition(0);
-        binding.recyclerViewMain.setAdapter(new ToDoItemRecyclerViewAdapter());
+        binding.recyclerViewMain.setAdapter(new ToDoItemRecyclerViewAdapter(models));
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override

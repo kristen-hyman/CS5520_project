@@ -10,8 +10,11 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 import edu.neu.madsea.kristenhyman.data.ToDoRepository;
 import edu.neu.madsea.kristenhyman.data.ToDo;
@@ -32,7 +35,11 @@ public class ToDoListFragment extends Fragment {
     ) {
         binding = FragmentToDoListBinding.inflate(inflater, container, false);
 
-        for (ToDo todo : ToDoRepository.getAllTodos()) {
+        LiveData<List<ToDo>> allTodos = ToDoRepository.getAllTodos();
+        List<ToDo> allTodosList = (List<ToDo>) ToDoRepository.getAllTodos();
+
+        //for (ToDo todo : ToDoRepository.getAllTodos()) {
+        for (ToDo todo : allTodosList) {
             ToDoItemViewBinding todoBinding = ToDoItemViewBinding.inflate(inflater, binding.todoItemsLayout, true);
             todoBinding.setTodoTask(todo);
 

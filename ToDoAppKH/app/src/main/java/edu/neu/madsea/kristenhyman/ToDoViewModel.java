@@ -18,7 +18,6 @@ public class ToDoViewModel extends ViewModel {
     public MutableLiveData<String> todoDescription = new MutableLiveData<>();
     private MutableLiveData<Boolean> todoCreated = new MutableLiveData<>();
 
-    // TODO(ahs): Review/include the SavedStateHandle stuff
     public ToDoViewModel(SavedStateHandle savedStateHandle) {
         todoTitle = savedStateHandle.get("title");
         if (todoTitle == null) {
@@ -38,7 +37,7 @@ public class ToDoViewModel extends ViewModel {
     }
 
     public void createTodo() {
-        ToDoRepository.addToDo(ToDo.createTodo(todoTitle.getValue(), todoDescription.getValue()));
+        ToDoRepository.insert(ToDo.createTodo(todoTitle.getValue(), todoDescription.getValue()));
         todoCreated.setValue(Boolean.TRUE);
     }
 
