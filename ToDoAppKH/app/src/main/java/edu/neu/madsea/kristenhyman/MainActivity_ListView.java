@@ -1,6 +1,7 @@
 package edu.neu.madsea.kristenhyman;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,9 @@ public class MainActivity_ListView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mToDoViewModel = new ViewModelProvider(this).get(ToDoViewModel.class);
+
         // This is what we would do if we weren't using the ViewBinding (as we see below)
 //        setContentView(R.layout.activity_main_list_view);
 

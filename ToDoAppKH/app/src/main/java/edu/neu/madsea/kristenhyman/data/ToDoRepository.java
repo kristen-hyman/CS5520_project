@@ -14,12 +14,19 @@ import java.util.List;
 public class ToDoRepository {
     private static LiveData<List<ToDo>> mAllToDos;
     private static ToDoDao mToDoDao;
+    private ToDoDatabase db;
 
     ToDoRepository(Application application) {
-        ToDoDatabase db = ToDoDatabase.getDatabase(application);
+        db = ToDoDatabase.getDatabase(application);
         mToDoDao = db.toDoDao();
         mAllToDos = mToDoDao.getAlphabetizedWords();
+        this.addFakeToDo();
+
     }
+    public void addFakeToDo() {
+        mToDoDao.insert(ToDo.createTodo("Task todo 1", "do something, already"));
+    }
+
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.

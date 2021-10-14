@@ -23,6 +23,7 @@ import edu.neu.madsea.kristenhyman.databinding.ToDoItemViewBinding;
  * This class holds the data collection, and allows the data to be mapped to the ViewHolder.
  * In this case, it "knows" the ToDoRepo (or, some collection of ToDo objects), and when is appropriate,
  * maps a specific ToDo object to a ViewHolder to display that ToDo instance.
+ * The adapter binds the view model to the view.
  */
 public class ToDoItemRecyclerViewAdapter extends ListAdapter<ToDo, ToDoItemViewHolder> {
 
