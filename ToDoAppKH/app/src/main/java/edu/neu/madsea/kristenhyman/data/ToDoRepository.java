@@ -1,6 +1,7 @@
 package edu.neu.madsea.kristenhyman.data;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
@@ -12,17 +13,17 @@ import java.util.List;
  */
 
 public class ToDoRepository {
-    private static LiveData<List<ToDo>> mAllToDos;
-    private static ToDoDao mToDoDao;
+    private static ToDoRepository singleton;
+    private LiveData<List<ToDo>> mAllToDos;
+    private ToDoDao mToDoDao;
     private ToDoDatabase db;
 
-    ToDoRepository(Application application) {
-        db = ToDoDatabase.getDatabase(application);
+    ToDoRepository(Context context) {
+        db = ToDoDatabase.getDatabase(context);
         mToDoDao = db.toDoDao();
         mAllToDos = mToDoDao.getAlphabetizedWords();
-        this.addFakeToDo();
-
     }
+
     public void addFakeToDo() {
         mToDoDao.insert(ToDo.createTodo("Task todo 1", "do something, already"));
     }
@@ -30,11 +31,18 @@ public class ToDoRepository {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    public static LiveData<List<ToDo>> getAllTodos() {
+    public LiveData<List<ToDo>> getAllTodos() {
         return mAllToDos;
     }
 
-    public static void insert(ToDo todo) {
+    public static ToDoRepository getToDoRepository(Context app) {
+        if (singleton == null) {
+            singleton = new ToDoRepository(app);
+        }
+        return singleton;
+    }
+
+    public void insert(ToDo todo) {
         ToDoDatabase.databaseWriteExecutor.execute(() -> {
             mToDoDao.insert(todo);
         });

@@ -27,12 +27,15 @@ import edu.neu.madsea.kristenhyman.databinding.ToDoItemViewBinding;
  */
 public class ToDoItemRecyclerViewAdapter extends ListAdapter<ToDo, ToDoItemViewHolder> {
 
-
-
-    public ToDoItemRecyclerViewAdapter(@NonNull DiffUtil.ItemCallback<ToDo> diffCallback) {
-        super(diffCallback);
+    public ToDoItemRecyclerViewAdapter() {
+        super(new ToDoItemRecyclerViewAdapter.TodoDiff());
     }
 
+    /**
+     * RecyclerView calls this method whenever it needs to create a new ViewHolder.
+     * The method creates and initializes the ViewHolder and its associated
+     * View, but does not fill in the view's contents—the ViewHolder has not yet been bound to specific data.
+     */
     @NonNull
     @Override
     public ToDoItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,6 +44,12 @@ public class ToDoItemRecyclerViewAdapter extends ListAdapter<ToDo, ToDoItemViewH
                 false));
     }
 
+    /**
+     * RecyclerView calls this method to associate a ViewHolder with data.
+     * The method fetches the appropriate data and uses the data to fill in the view holder's layout.
+     * For example, if the RecyclerView displays a list of names, the method might find the appropriate
+     * name in the list and fill in the view holder's TextView widget.
+     */
     @Override
     public void onBindViewHolder(@NonNull ToDoItemViewHolder holder, int position) {
         // This is how we bind the UI to a specific task

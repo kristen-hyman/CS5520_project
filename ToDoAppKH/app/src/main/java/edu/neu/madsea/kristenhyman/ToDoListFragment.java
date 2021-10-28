@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
+import edu.neu.madsea.kristenhyman.data.ToDoItemRecyclerViewAdapter;
 import edu.neu.madsea.kristenhyman.data.ToDoRepository;
 import edu.neu.madsea.kristenhyman.data.ToDo;
 import edu.neu.madsea.kristenhyman.databinding.FragmentToDoListBinding;
@@ -34,23 +35,19 @@ public class ToDoListFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentToDoListBinding.inflate(inflater, container, false);
+        ToDoRepository repository = ToDoRepository.getToDoRepository(binding.getRoot().getContext());
+        LiveData<List<ToDo>> allTodos = repository.getAllTodos();
 
-        LiveData<List<ToDo>> allTodos = ToDoRepository.getAllTodos();
-        List<ToDo> allTodosList = (List<ToDo>) ToDoRepository.getAllTodos();
+        //create adapter
+        ToDoItemRecyclerViewAdapter adapter = new ToDoItemRecyclerViewAdapter();
 
-        //for (ToDo todo : ToDoRepository.getAllTodos()) {
-        for (ToDo todo : allTodosList) {
-            ToDoItemViewBinding todoBinding = ToDoItemViewBinding.inflate(inflater, binding.todoItemsLayout, true);
-            todoBinding.setTodoTask(todo);
+        //observe allTodos because that is the LiveData. (populate list)
+        //so when the data changes we can send this to the adapter to make the change on the view
+        allTodos.observe(getViewLifecycleOwner(), list -> adapter.submitList(list));
 
-            (todoBinding.titleTextView).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Snackbar.make(view, todo.getTaskTitle(), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-            });
-        }
+        // connecting the adapter and the recycler view so the data shows up
+        binding.todoItemsRecyclerview.setAdapter(adapter);
+
         return binding.getRoot();
     }
 

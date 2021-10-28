@@ -8,8 +8,8 @@
     android:layout_height="match_parent"
     tools:context=".ToDoListFragment">
 
-    <LinearLayout
-        android:id="@+id/todo_items_layout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todo_items_recyclerview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -19,6 +19,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-    </LinearLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

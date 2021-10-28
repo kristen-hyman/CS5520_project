@@ -27,7 +27,6 @@ public class ToDo {
     private String description;
 
 
-
     public String getTaskTitle() {
         return taskTitle;
     }
@@ -43,7 +42,8 @@ public class ToDo {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    // make sure to careful with formatting of the duedate/ reminder duedate
+    // you have to tell it how to convert from string to a date
 
     public static ToDo createTodo(String title, String detail) {
         ToDo todo = new ToDo();
