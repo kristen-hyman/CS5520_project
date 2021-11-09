@@ -5,6 +5,7 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class ToDoRepository {
     private LiveData<List<ToDo>> mAllToDos;
     private ToDoDao mToDoDao;
     private ToDoDatabase db;
+    private List<ToDo> reminderToDos;
 
     ToDoRepository(Context context) {
         db = ToDoDatabase.getDatabase(context);
@@ -25,7 +27,8 @@ public class ToDoRepository {
     }
 
     public void addFakeToDo() {
-        mToDoDao.insert(ToDo.createTodo("Task todo 1", "do something, already"));
+        mToDoDao.insert(ToDo.createTodo("Task todo 1", "do something, already",
+                "11/4/2021", "11/2/2021"));
     }
 
 
@@ -34,6 +37,16 @@ public class ToDoRepository {
     public LiveData<List<ToDo>> getAllTodos() {
         return mAllToDos;
     }
+
+    // TODO: resolve live data/ data issue in this method so I can get all the todos.
+    /**
+    public List<ToDo>getTodosToBeReminded(LocalDateTime start, LocalDateTime end) {
+         mAllToDos = getAllTodos();
+         reminderToDos = mAllToDos.getTodosToBeReminded(start, end);
+
+        return reminderToDos;
+    }
+     */
 
     public static ToDoRepository getToDoRepository(Context app) {
         if (singleton == null) {
@@ -48,47 +61,3 @@ public class ToDoRepository {
         });
     }
 }
-
-
-    /**
-    private static List<ToDo> todoSet;
-    private static ToDoRepository singleton;
-    private ToDoRepository() {
-        todoSet = new ArrayList<ToDo>();
-
-    }
-
-    public List<ToDo> asList() {
-        return todoSet;
-    }
-
-    public static ToDoRepository getAllTodos() {
-        if (singleton == null) {
-            singleton = new ToDoRepository();
-            addToDo(ToDo.createTodo("task1", "details1"));
-        }
-        return singleton;
-    }
-
-    public static void addToDo(ToDo newToDo) {
-        getAllTodos().todoSet.add(newToDo);
-    }
-
-    @NonNull
-    @Override
-    public Iterator<ToDo> iterator() {
-        return todoSet.iterator();
-    }
-
-    @Override
-    public void forEach(@NonNull Consumer<? super ToDo> action) {
-        todoSet.forEach(action);
-    }
-
-    @NonNull
-    @Override
-    public Spliterator<ToDo> spliterator() {
-        return todoSet.spliterator();
-    }
-}
-     **/

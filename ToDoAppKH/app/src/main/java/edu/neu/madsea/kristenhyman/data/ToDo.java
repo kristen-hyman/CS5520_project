@@ -27,6 +27,16 @@ public class ToDo {
     private String description;
 
 
+    @ColumnInfo(name = "dueDate")
+    @NonNull
+    private String dueDate;
+
+
+    @ColumnInfo(name = "reminderDate")
+    @NonNull
+    private String reminderDate;
+
+
     public String getTaskTitle() {
         return taskTitle;
     }
@@ -42,13 +52,32 @@ public class ToDo {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+    public String getDueDate() {
+        return dueDate;
+    }
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+
+    public String reminderDate() {
+        return reminderDate;
+    }
+    public void setReminderDate(String reminderDate) {
+        this.reminderDate = reminderDate;
+    }
+
     // make sure to careful with formatting of the duedate/ reminder duedate
     // you have to tell it how to convert from string to a date
 
-    public static ToDo createTodo(String title, String detail) {
+    public static ToDo createTodo(String title, String detail, String dueDate, String reminderDate) {
         ToDo todo = new ToDo();
         todo.setTaskTitle(title);
         todo.setDescription(detail);
+        todo.setDueDate(dueDate);
+        todo.setReminderDate(reminderDate);
         return todo;
     }
 

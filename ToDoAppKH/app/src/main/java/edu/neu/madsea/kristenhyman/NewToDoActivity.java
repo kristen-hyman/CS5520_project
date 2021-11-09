@@ -50,10 +50,6 @@ public class NewToDoActivity extends AppCompatActivity {
             }
         });
 
-
-        // Observe a flag we use to say the new ToDo has been created
-        // This is a bit of a hack; there's a slightly better way to do this (observe an
-        //   event rather than a Boolean), but this is okay for now.
         toDoViewModel.getTodoCreated().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean todoCreated) {

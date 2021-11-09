@@ -61,10 +61,12 @@ abstract public class ToDoDatabase extends RoomDatabase {
                 ToDoDao dao = INSTANCE.toDoDao();
                 dao.deleteAll();
 
-                ToDo todo1 = createTodo("task1", "description1");
+                ToDo todo1 = createTodo("task1", "description1", "11/3/2021",
+                        "11/2/2021");
                 dao.insert(todo1);
 
-                ToDo todo2 = createTodo("task2", "description2");
+                ToDo todo2 = createTodo("task2", "description2", "11/5/2021",
+                        "11/2/2021");
                 dao.insert(todo2);
             });
         }
