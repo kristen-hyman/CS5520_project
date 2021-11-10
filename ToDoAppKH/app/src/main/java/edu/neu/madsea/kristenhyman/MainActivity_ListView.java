@@ -68,4 +68,12 @@ public class MainActivity_ListView extends AppCompatActivity {
     }
 
 
+    public void deleteTodo(View view) {
+        mToDoViewModel = new ViewModelProvider(this).get(ToDoViewModel.class);
+
+        // Use the ViewBinding instead of the layout directly
+        binding = ActivityMainListViewBinding.inflate(getLayoutInflater());
+
+    }
+
 }

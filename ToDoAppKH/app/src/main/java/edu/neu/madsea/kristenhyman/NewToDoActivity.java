@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +32,7 @@ public class NewToDoActivity extends AppCompatActivity {
         // jetpack generates this class for you for binding
         ActivityNewToDoBinding binding = ActivityNewToDoBinding.inflate(getLayoutInflater());
         // this is the instance associated w/ the binding to make sure i'm using hte asme
-        // viewmodel and layout between activity and lauyout
+        // viewmodel and layout between activity and layout
         setContentView(binding.getRoot());
 
         // Get an instance to the shared ViewModel
@@ -41,7 +42,6 @@ public class NewToDoActivity extends AppCompatActivity {
 
         // finding the create button
         Button button = (Button)findViewById(R.id.buttonCreate);
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +59,23 @@ public class NewToDoActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Button cancelButton = (Button)findViewById(R.id.buttonCancel);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toDoViewModel.cancelNewTodo();
+            }
+        });
+        binding.buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NewToDoActivity.this, MainActivity_ListView.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 

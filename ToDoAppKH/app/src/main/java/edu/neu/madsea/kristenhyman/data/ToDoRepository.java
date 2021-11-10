@@ -38,15 +38,6 @@ public class ToDoRepository {
         return mAllToDos;
     }
 
-    // TODO: resolve live data/ data issue in this method so I can get all the todos.
-    /**
-    public List<ToDo>getTodosToBeReminded(LocalDateTime start, LocalDateTime end) {
-         mAllToDos = getAllTodos();
-         reminderToDos = mAllToDos.getTodosToBeReminded(start, end);
-
-        return reminderToDos;
-    }
-     */
 
     public static ToDoRepository getToDoRepository(Context app) {
         if (singleton == null) {
@@ -58,6 +49,12 @@ public class ToDoRepository {
     public void insert(ToDo todo) {
         ToDoDatabase.databaseWriteExecutor.execute(() -> {
             mToDoDao.insert(todo);
+        });
+    }
+
+    public void delete(ToDo todo) {
+        ToDoDatabase.databaseWriteExecutor.execute(() -> {
+            mToDoDao.deleteByTaskTitle(todo.getTaskTitle());
         });
     }
 }
