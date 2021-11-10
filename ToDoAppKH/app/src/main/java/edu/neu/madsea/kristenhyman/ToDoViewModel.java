@@ -2,7 +2,9 @@ package edu.neu.madsea.kristenhyman;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+import android.view.View;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -83,8 +85,21 @@ public class ToDoViewModel extends AndroidViewModel {
         return createdTodo;
     }
 
+    public void deleteTodo(ToDo todoToDelete) {
+
+        repository.delete(todoToDelete);
+
+        // remove todo from scheduled work...
+        // ReminderWorker.scheduleWork(getApplication().getApplicationContext(), createdTodo);
+
+    }
+
     public LiveData<List<ToDo>> getAllToDos() {
         return mAllToDos;
     }
 
+    public void cancelNewTodo() {
+        //return to mainActivity
+
+    }
 }

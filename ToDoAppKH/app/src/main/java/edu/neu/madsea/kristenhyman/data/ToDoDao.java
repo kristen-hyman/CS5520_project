@@ -25,6 +25,9 @@ import edu.neu.madsea.kristenhyman.data.ToDo;
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(ToDo toDo);
 
+    @Query("DELETE FROM todo_table WHERE taskTitle = :inputTaskTitle")
+    int deleteByTaskTitle(String inputTaskTitle);
+
     @Query("DELETE FROM todo_table")
     void deleteAll();
 }
