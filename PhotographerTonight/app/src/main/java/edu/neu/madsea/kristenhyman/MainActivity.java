@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import edu.neu.madsea.kristenhyman.databinding.ActivityMainBinding;
+import edu.neu.madsea.kristenhyman.databinding.ToDoItemViewBinding;
+
 /**
  * adapted from Adrienne
  * https://github.com/ahope/cs5520_project/blob/main/todo-list/app/src/main/java/edu/northeastern/cs5520/todo_adrienne
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private ToDoItemViewBinding secondBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, NewToDoActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        // this moreso belongs to the item - todoviewholder
+        secondBinding = ToDoItemViewBinding.inflate(getLayoutInflater());
+        secondBinding.deleteTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.print("clicked delete!!");
+                //delete task
             }
         });
     }

@@ -74,8 +74,6 @@ public class NewToDoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 
 
