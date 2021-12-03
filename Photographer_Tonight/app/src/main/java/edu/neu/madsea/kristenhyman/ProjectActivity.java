@@ -31,7 +31,6 @@ public class ProjectActivity extends AppCompatActivity {
 
         // setContentView(R.layout.activity_project);
 
-        //binding is NULL - so this is why it's not loading..
         binding = ActivityProjectBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

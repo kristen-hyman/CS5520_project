@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.List;
 
@@ -35,6 +36,9 @@ public class ProjectListFragment extends Fragment {
         ProjectRepository repository = ProjectRepository.getToDoRepository(binding.getRoot().getContext());
         LiveData<List<Project>> allProjects = repository.getAllProjects();
 
+
+        binding.todoItemsRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+
         //create adapter
         ProjectItemRecyclerViewAdapter adapter = new ProjectItemRecyclerViewAdapter();
 
@@ -44,6 +48,7 @@ public class ProjectListFragment extends Fragment {
 
         // connecting the adapter and the recycler view so the data shows up
         binding.todoItemsRecyclerview.setAdapter(adapter);
+
 
         // Get an instance to the shared ViewModel
         // this must be the same between the activity and the layout
