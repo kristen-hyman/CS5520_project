@@ -15,10 +15,13 @@ import edu.neu.madsea.kristenhyman.data.ProjectRepository;
 public class ProjectViewModel extends AndroidViewModel {
 
     private WorkManager mWorkManager;
-    public MutableLiveData<String> projectTitle = new MutableLiveData<>();
+    public MutableLiveData<String> projectArtist = new MutableLiveData<>();
     public MutableLiveData<String> projectDescription = new MutableLiveData<>();
     public MutableLiveData<String> projectDate = new MutableLiveData<>();
-    public MutableLiveData<String> todoReminderDate = new MutableLiveData<>();
+    public MutableLiveData<String> projectTime = new MutableLiveData<>();
+    public MutableLiveData<String> projectLocation = new MutableLiveData<>();
+    public MutableLiveData<String> projectEmail = new MutableLiveData<>();
+    public MutableLiveData<String> projectBudget = new MutableLiveData<>();
 
     private MutableLiveData<Boolean> projectCreated = new MutableLiveData<>();
     private ProjectRepository repository;
@@ -29,11 +32,17 @@ public class ProjectViewModel extends AndroidViewModel {
         mWorkManager = WorkManager.getInstance(app);
 
         repository = ProjectRepository.getToDoRepository(app);
-        //projectTitle = savedStateHandle.get("title");
-        if (projectTitle == null) {
-            projectTitle = new MutableLiveData<>();
-            projectTitle.setValue("");
+        //projectArtist = savedStateHandle.get("title");
+        if (projectArtist == null) {
+            projectArtist = new MutableLiveData<>();
+            projectArtist.setValue("");
         }
+
+        if (projectLocation == null) {
+            projectLocation = new MutableLiveData<>();
+            projectLocation.setValue("");
+        }
+
         // projectDescription = savedStateHandle.get("description");
         if (projectDescription == null) {
             projectDescription = new MutableLiveData<>();
@@ -45,9 +54,14 @@ public class ProjectViewModel extends AndroidViewModel {
             projectDate.setValue("");
         }
 
-        if (todoReminderDate == null) {
-            todoReminderDate = new MutableLiveData<>();
-            todoReminderDate.setValue("");
+        if (projectTime == null) {
+            projectTime = new MutableLiveData<>();
+            projectTime.setValue("");
+        }
+
+        if (projectBudget == null) {
+            projectBudget = new MutableLiveData<>();
+            projectBudget.setValue("");
         }
         mAllToDos = repository.getAllProjects();
         projectCreated.setValue(Boolean.FALSE);
@@ -58,9 +72,8 @@ public class ProjectViewModel extends AndroidViewModel {
     }
 
     public Project createProject() {
-        Project createdTodo = Project.createProject(projectTitle.getValue(), projectDescription.getValue(),
-                projectDate.getValue(),
-                todoReminderDate.getValue());
+        Project createdTodo = Project.createProject(projectArtist.getValue(), projectDescription.getValue(),
+                projectDate.getValue(), projectBudget.getValue());
 
         repository.insert(createdTodo);
         // pass todo into schedule work method

@@ -16,7 +16,7 @@ public class ProjectRepository {
 
     ProjectRepository(Context context) {
         db = ProjectDatabase.getDatabase(context);
-        mProjectDao = db.toDoDao();
+        mProjectDao = db.projectDao();
         mAllProjects = mProjectDao.getAlphabetizedWords();
     }
 

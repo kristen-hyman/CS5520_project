@@ -29,7 +29,8 @@ public class ProjectItemRecyclerViewAdapter extends ListAdapter<Project, Project
     /**
      * RecyclerView calls this method whenever it needs to create a new ViewHolder.
      * The method creates and initializes the ViewHolder and its associated
-     * View, but does not fill in the view's contents—the ViewHolder has not yet been bound to specific data.
+     * View, but does not fill in the view's contents -
+     *  the ViewHolder has not yet been bound to specific data.
      */
     @NonNull
     @Override
@@ -54,6 +55,9 @@ public class ProjectItemRecyclerViewAdapter extends ListAdapter<Project, Project
         //((ProjectItemViewHolder) holder).bind(currentModel.getProjectCreated());
        //((ProjectItemViewHolder) holder).bind(models.get(position));
     }
+
+
+
     public static class ProjectDiff extends DiffUtil.ItemCallback<Project> {
 
         @Override
@@ -65,6 +69,7 @@ public class ProjectItemRecyclerViewAdapter extends ListAdapter<Project, Project
         public boolean areContentsTheSame(@NonNull Project oldItem, @NonNull Project newItem) {
             return oldItem.getArtistName().equals(newItem.getArtistName());
         }
+
     }
 
 }
