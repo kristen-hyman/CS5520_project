@@ -43,7 +43,7 @@
             android:inputType="textLongMessage"
             android:lines="5"
             android:singleLine="false"
-            android:text="@={viewmodel.projectDescription}"
+            android:text="@={viewmodel.projectLocation}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +56,7 @@
             android:ems="10"
             android:gravity="start|top"
             android:hint="Description"
+            android:text="@={viewmodel.projectDescription}"
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -109,7 +110,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Venue"
-            android:text="@={viewmodel.projectLocation}"
+            android:text="@={viewmodel.projectVenue}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,12 +137,10 @@
             android:ems="10"
             android:hint="Email Address for Contact"
             android:text="@={viewmodel.projectEmail}"
-            app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 
         <Button
             android:id="@+id/buttonCancel"

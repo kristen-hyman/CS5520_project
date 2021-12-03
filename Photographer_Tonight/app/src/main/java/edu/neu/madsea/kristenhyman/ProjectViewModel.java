@@ -16,12 +16,13 @@ public class ProjectViewModel extends AndroidViewModel {
 
     private WorkManager mWorkManager;
     public MutableLiveData<String> projectArtist = new MutableLiveData<>();
-    public MutableLiveData<String> projectDescription = new MutableLiveData<>();
+    public MutableLiveData<String> projectLocation = new MutableLiveData<>();
+    public MutableLiveData<String> projectVenue = new MutableLiveData<>();
     public MutableLiveData<String> projectDate = new MutableLiveData<>();
     public MutableLiveData<String> projectTime = new MutableLiveData<>();
-    public MutableLiveData<String> projectLocation = new MutableLiveData<>();
-    public MutableLiveData<String> projectEmail = new MutableLiveData<>();
     public MutableLiveData<String> projectBudget = new MutableLiveData<>();
+    public MutableLiveData<String> projectDescription = new MutableLiveData<>();
+    public MutableLiveData<String> projectEmail = new MutableLiveData<>();
 
     private MutableLiveData<Boolean> projectCreated = new MutableLiveData<>();
     private ProjectRepository repository;
@@ -43,16 +44,18 @@ public class ProjectViewModel extends AndroidViewModel {
             projectLocation.setValue("");
         }
 
-        // projectDescription = savedStateHandle.get("description");
-        if (projectDescription == null) {
-            projectDescription = new MutableLiveData<>();
-            projectDescription.setValue("");
-        }
 
+        if (projectVenue == null) {
+            projectVenue = new MutableLiveData<>();
+            projectVenue.setValue("");
+        }
         if (projectDate == null) {
             projectDate = new MutableLiveData<>();
             projectDate.setValue("");
         }
+
+
+
 
         if (projectTime == null) {
             projectTime = new MutableLiveData<>();
@@ -63,6 +66,17 @@ public class ProjectViewModel extends AndroidViewModel {
             projectBudget = new MutableLiveData<>();
             projectBudget.setValue("");
         }
+        // projectDescription = savedStateHandle.get("description");
+        if (projectDescription == null) {
+            projectDescription = new MutableLiveData<>();
+            projectDescription.setValue("");
+        }
+        // projectDescription = savedStateHandle.get("description");
+        if (projectEmail == null) {
+            projectEmail = new MutableLiveData<>();
+            projectEmail.setValue("");
+        }
+
         mAllToDos = repository.getAllProjects();
         projectCreated.setValue(Boolean.FALSE);
     }

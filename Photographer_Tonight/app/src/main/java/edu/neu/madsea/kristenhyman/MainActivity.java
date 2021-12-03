@@ -16,7 +16,10 @@ import java.util.List;
 import edu.neu.madsea.kristenhyman.data.ProjectItemRecyclerViewAdapter;
 import edu.neu.madsea.kristenhyman.databinding.ActivityMainBinding;
 import edu.neu.madsea.kristenhyman.databinding.ActivityProjectListViewBinding;
-
+/**
+ * adapted from Adrienne
+ * https://github.com/ahope/cs5520_project/blob/main/todo-list/app/src/main/java/edu/northeastern/cs5520/todo_adrienne/
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
