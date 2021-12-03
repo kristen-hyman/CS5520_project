@@ -12,104 +12,194 @@
         <import type="android.view.View"/>
         <variable
             name="viewmodel"
-            type="edu.neu.madsea.kristenhyman.ToDoViewModel"/>
+            type="edu.neu.madsea.kristenhyman.ProjectViewModel"/>
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewToDoActivity">
+    tools:context=".NewProjectActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         tools:context=".ToDoFragment">
 
         <EditText
-            android:id="@+id/editTextTodoTitle"
+            android:id="@+id/editTextLocation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="A short title"
-            android:text="@={viewmodel.todoTitle}"
-            android:inputType="text|textCapSentences"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/editTextTodoDetail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:editable="true"
             android:ems="10"
-            android:hint="Some more details"
-            android:text="@={viewmodel.todoDescription}"
+            android:hint="Location"
             android:inputType="textLongMessage"
             android:lines="5"
             android:singleLine="false"
+            android:text="@={viewmodel.projectDescription}"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTodoTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextArtistName" />
 
         <EditText
-            android:id="@+id/editTextTodoDeadlineDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/editTextDescription"
+            android:layout_width="406dp"
+            android:layout_height="60dp"
             android:ems="10"
-            android:hint="What is the due date?"
-            android:text="@={viewmodel.todoDueDate}"
-            android:inputType="date"
+            android:gravity="start|top"
+            android:hint="Description"
+            android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTodoDetail" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTodoBudget" />
 
         <EditText
-            android:id="@+id/editTextTodoDeadlineTime"
+            android:id="@+id/editTextTodoBudget"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:ems="10"
-            android:hint="When would you like to be reminded of this (MM-DD-YYYY)?"
+            android:hint="Budget"
             android:text="@={viewmodel.todoReminderDate}"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTodoDeadlineDate" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
 
-        <CheckedTextView
-            android:id="@+id/checkedTextView"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editTextTime"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="CheckedTextView"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Time"
+            android:text="@={viewmodel.todoReminderDate}"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTodoDeadlineTime" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:hint="Date (MM-DD-YYYY)"
+            android:inputType="date"
+            android:text="@={viewmodel.projectDate}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTodoVenue" />
+
+        <EditText
+            android:id="@+id/editTextTodoVenue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Venue"
+            android:text="@={viewmodel.todoReminderDate}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextLocation" />
+
+        <EditText
+            android:id="@+id/editTextArtistName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Artist Name"
+            android:inputType="text|textCapSentences"
+            android:text="@={viewmodel.projectTitle}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNewProjectInstructions"
+            tools:layout_editor_absoluteY="168dp" />
+
+        <EditText
+            android:id="@+id/editTextContactEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Email Address for Contact"
+            android:text="@={viewmodel.todoReminderDate}"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/buttonCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="83dp"
+            android:layout_marginEnd="252dp"
+            android:layout_marginBottom="64dp"
+            android:background="#081554"
             android:onClick="cancelNewTodo"
             android:text="Cancel"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkedTextView"
-            app:layout_constraintVertical_bias="0.501" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextContactEmail" />
 
         <Button
             android:id="@+id/buttonCreate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#081554"
             android:onClick="createTodo"
             android:text="Create"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintHorizontal_bias="0.524"
             app:layout_constraintStart_toEndOf="@+id/buttonCancel"
-            app:layout_constraintTop_toBottomOf="@+id/checkedTextView"
-            app:layout_constraintVertical_bias="0.501" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextContactEmail"
+            app:layout_constraintVertical_bias="0.564" />
+
+        <TextView
+            android:id="@+id/textViewNewProjectInstructions"
+            android:layout_width="349dp"
+            android:layout_height="63dp"
+            android:layout_marginBottom="56dp"
+            android:text="Find incredible photographers in your city. Just add a few details and post your project to share it with dozens of talented creators."
+            android:textAlignment="center"
+            android:textColor="#081554"
+            app:layout_constraintBottom_toTopOf="@+id/editTextArtistName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAddNewProj" />
+
+        <TextView
+            android:id="@+id/textViewAddNewProj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add A New Project"
+            android:textColor="#081554"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewNewProjectInstructions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

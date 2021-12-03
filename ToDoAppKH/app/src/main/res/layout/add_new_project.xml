@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewToDoActivity">
+    tools:context=".NewProjectActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/new_to_do_fragment"
-        android:name="edu.neu.madsea.kristenhyman.ToDoListFragment"
+        android:name="edu.neu.madsea.kristenhyman.ProjectListFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:defaultNavHost="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_to_do_list" />
+        tools:layout="@layout/fragment_project_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

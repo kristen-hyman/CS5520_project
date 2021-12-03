@@ -11,24 +11,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import edu.neu.madsea.kristenhyman.databinding.ActivityMainBinding;
+import edu.neu.madsea.kristenhyman.databinding.ActivityProjectBinding;
+import edu.neu.madsea.kristenhyman.databinding.ActivityProjectBinding;
 import edu.neu.madsea.kristenhyman.databinding.ProjectItemViewBinding;
 
-/**
- * adapted from Adrienne
- * https://github.com/ahope/cs5520_project/blob/main/todo-list/app/src/main/java/edu/northeastern/cs5520/todo_adrienne
- */
-public class MainActivity extends AppCompatActivity {
+public class ProjectActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    private ActivityProjectBinding binding;
     private ProjectItemViewBinding secondBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        // setContentView(R.layout.activity_project);
+
+        //binding is NULL - so this is why it's not loading..
+        binding = ActivityProjectBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NewProjectActivity.class);
+                Intent intent = new Intent(ProjectActivity.this, NewProjectActivity.class);
                 startActivity(intent);
             }
         });

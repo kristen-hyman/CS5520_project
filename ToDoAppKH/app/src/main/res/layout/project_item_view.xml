@@ -13,7 +13,7 @@
     </data>
 
     <!--    This Layout is utilized by both the ToDoItemView (a Custom UI Component) and
-        the ToDoItemViewHolder, to be used in the ListView/RecyclerView.
+        the ProjectItemViewHolder, to be used in the ListView/RecyclerView.
     -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +37,7 @@
             android:layout_width="302dp"
             android:layout_height="35dp"
             android:background="@android:color/background_light"
-            android:text="@{todoTask.taskTitle}"
+            android:text="@{todoTask.artistName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

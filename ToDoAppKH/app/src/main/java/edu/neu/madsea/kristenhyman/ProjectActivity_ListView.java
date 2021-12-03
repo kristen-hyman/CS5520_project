@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.neu.madsea.kristenhyman.data.ProjectItemRecyclerViewAdapter;
-import edu.neu.madsea.kristenhyman.databinding.ActivityMainListViewBinding;
+import edu.neu.madsea.kristenhyman.databinding.ActivityProjectListViewBinding;
 /**
  * adapted from Adrienne
  * https://github.com/ahope/cs5520_project/blob/main/todo-list/app/src/main/java/edu/northeastern/cs5520/todo_adrienne
  */
-public class MainActivity_ListView extends AppCompatActivity {
+public class ProjectActivity_ListView extends AppCompatActivity {
 
-    private ActivityMainListViewBinding binding;
+    private ActivityProjectListViewBinding binding;
     private List<ProjectViewModel> models = new ArrayList<>();
     private ProjectViewModel mProjectViewModel;
 
@@ -33,7 +33,7 @@ public class MainActivity_ListView extends AppCompatActivity {
 //        setContentView(R.layout.activity_main_list_view);
 
         // Use the ViewBinding instead of the layout directly
-        binding = ActivityMainListViewBinding.inflate(getLayoutInflater());
+        binding = ActivityProjectListViewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.recyclerViewMain.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerViewMain.scrollToPosition(0);
@@ -50,7 +50,7 @@ public class MainActivity_ListView extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity_ListView.this, NewProjectActivity.class);
+                Intent intent = new Intent(ProjectActivity_ListView.this, NewProjectActivity.class);
                 startActivity(intent);
             }
         });
@@ -71,7 +71,7 @@ public class MainActivity_ListView extends AppCompatActivity {
         mProjectViewModel = new ViewModelProvider(this).get(ProjectViewModel.class);
 
         // Use the ViewBinding instead of the layout directly
-        binding = ActivityMainListViewBinding.inflate(getLayoutInflater());
+        binding = ActivityProjectListViewBinding.inflate(getLayoutInflater());
 
     }
 

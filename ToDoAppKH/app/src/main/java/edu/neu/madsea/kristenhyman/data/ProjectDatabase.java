@@ -1,6 +1,6 @@
 package edu.neu.madsea.kristenhyman.data;
 
-import static edu.neu.madsea.kristenhyman.data.ToDo.createTodo;
+import static edu.neu.madsea.kristenhyman.data.Project.createProject;
 
 import android.content.Context;
 
@@ -14,29 +14,24 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-/**
- * This is the backend. The database. This used to be done by the OpenHelper.
- * The fact that this has very few comments emphasizes its coolness.  In a real
- * app, consider exporting the schema to help you with migrations.
- */
+@Database(entities = {Project.class}, version = 4, exportSchema = false)
+abstract public class ProjectDatabase extends RoomDatabase {
 
-@Database(entities = {ToDo.class}, version = 1, exportSchema = false)
-abstract public class ToDoDatabase extends RoomDatabase {
-
-    abstract ToDoDao toDoDao();
+    abstract ProjectDao toDoDao();
 
     // marking the instance as volatile to ensure atomic access to the variable
-    private static volatile ToDoDatabase INSTANCE;
+    private static volatile ProjectDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static ToDoDatabase getDatabase(final Context context) {
+    static ProjectDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (ToDoDatabase.class) {
+            synchronized (ProjectDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            ToDoDatabase.class, "word_database")
+                            ProjectDatabase.class, "project_db")
+                            .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -58,17 +53,27 @@ abstract public class ToDoDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
-                ToDoDao dao = INSTANCE.toDoDao();
+                ProjectDao dao = INSTANCE.toDoDao();
                 dao.deleteAll();
 
-                ToDo todo1 = createTodo("task1", "description1", "11/3/2021",
+                Project todo1 = createProject("task1", "description1", "11/3/2021",
                         "11/2/2021");
                 dao.insert(todo1);
 
-                ToDo todo2 = createTodo("task2", "description2", "11/5/2021",
+                Project todo2 = createProject("task2", "description2", "11/5/2021",
                         "11/2/2021");
                 dao.insert(todo2);
             });
         }
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db){
+            super.onOpen(db);
+            ProjectDao dao = INSTANCE.toDoDao();
+            Project todo1 = createProject("task1", "description1", "11/3/2021",
+                    "11/2/2021");
+            dao.insert(todo1);
+            System.out.println("database opened");
+        }
     };
+
 }

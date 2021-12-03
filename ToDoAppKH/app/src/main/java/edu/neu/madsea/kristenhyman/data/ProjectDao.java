@@ -5,30 +5,26 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.TypeConverters;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-import edu.neu.madsea.kristenhyman.data.ToDo;
-
 @Dao
-    public interface ToDoDao {
+    public interface ProjectDao {
 
     // LiveData is a data holder class that can be observed within a given lifecycle.
     // Always holds/caches latest version of data. Notifies its active observers when the
     // data has changed. Since we are getting all the contents of the database,
     // we are notified whenever any of the database contents have changed.
-    @Query("SELECT * FROM todo_table ORDER BY taskTitle ASC")
-    LiveData<List<ToDo>> getAlphabetizedWords();
+    @Query("SELECT * FROM project_table ORDER BY artistName ASC")
+    LiveData<List<Project>> getAlphabetizedWords();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(ToDo toDo);
+    void insert(Project project);
 
-    @Query("DELETE FROM todo_table WHERE taskTitle = :inputTaskTitle")
+    @Query("DELETE FROM project_table WHERE artistName = :inputTaskTitle")
     int deleteByTaskTitle(String inputTaskTitle);
 
-    @Query("DELETE FROM todo_table")
+    @Query("DELETE FROM project_table")
     void deleteAll();
 }
 

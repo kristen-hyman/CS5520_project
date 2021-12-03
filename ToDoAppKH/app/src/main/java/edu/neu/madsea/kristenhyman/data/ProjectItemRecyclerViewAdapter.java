@@ -6,13 +6,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
-import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.neu.madsea.kristenhyman.ToDoViewModel;
-import edu.neu.madsea.kristenhyman.databinding.ToDoItemViewBinding;
+import edu.neu.madsea.kristenhyman.databinding.ProjectItemViewBinding;
 
 /**
  * adapted from Adrienne
@@ -21,14 +16,14 @@ import edu.neu.madsea.kristenhyman.databinding.ToDoItemViewBinding;
 
 /**
  * This class holds the data collection, and allows the data to be mapped to the ViewHolder.
- * In this case, it "knows" the ToDoRepo (or, some collection of ToDo objects), and when is appropriate,
- * maps a specific ToDo object to a ViewHolder to display that ToDo instance.
+ * In this case, it "knows" the ToDoRepo (or, some collection of Project objects), and when is appropriate,
+ * maps a specific Project object to a ViewHolder to display that Project instance.
  * The adapter binds the view model to the view.
  */
-public class ToDoItemRecyclerViewAdapter extends ListAdapter<ToDo, ToDoItemViewHolder> {
+public class ProjectItemRecyclerViewAdapter extends ListAdapter<Project, ProjectItemViewHolder> {
 
-    public ToDoItemRecyclerViewAdapter() {
-        super(new ToDoItemRecyclerViewAdapter.TodoDiff());
+    public ProjectItemRecyclerViewAdapter() {
+        super(new ProjectDiff());
     }
 
     /**
@@ -38,8 +33,8 @@ public class ToDoItemRecyclerViewAdapter extends ListAdapter<ToDo, ToDoItemViewH
      */
     @NonNull
     @Override
-    public ToDoItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ToDoItemViewHolder(ToDoItemViewBinding.inflate(LayoutInflater.from(parent.getContext()),
+    public ProjectItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ProjectItemViewHolder(ProjectItemViewBinding.inflate(LayoutInflater.from(parent.getContext()),
                 parent,
                 false));
     }
@@ -51,24 +46,24 @@ public class ToDoItemRecyclerViewAdapter extends ListAdapter<ToDo, ToDoItemViewH
      * name in the list and fill in the view holder's TextView widget.
      */
     @Override
-    public void onBindViewHolder(@NonNull ToDoItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProjectItemViewHolder holder, int position) {
         // This is how we bind the UI to a specific task
         holder.bind(getItem(position));
 
-        //ToDoViewModel currentModel = models.get(position);
-        //((ToDoItemViewHolder) holder).bind(currentModel.getTodoCreated());
-       //((ToDoItemViewHolder) holder).bind(models.get(position));
+        //ProjectViewModel currentModel = models.get(position);
+        //((ProjectItemViewHolder) holder).bind(currentModel.getProjectCreated());
+       //((ProjectItemViewHolder) holder).bind(models.get(position));
     }
-    public static class TodoDiff extends DiffUtil.ItemCallback<ToDo> {
+    public static class ProjectDiff extends DiffUtil.ItemCallback<Project> {
 
         @Override
-        public boolean areItemsTheSame(@NonNull ToDo oldItem, @NonNull ToDo newItem) {
+        public boolean areItemsTheSame(@NonNull Project oldItem, @NonNull Project newItem) {
             return oldItem == newItem;
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull ToDo oldItem, @NonNull ToDo newItem) {
-            return oldItem.getTaskTitle().equals(newItem.getTaskTitle());
+        public boolean areContentsTheSame(@NonNull Project oldItem, @NonNull Project newItem) {
+            return oldItem.getArtistName().equals(newItem.getArtistName());
         }
     }
 

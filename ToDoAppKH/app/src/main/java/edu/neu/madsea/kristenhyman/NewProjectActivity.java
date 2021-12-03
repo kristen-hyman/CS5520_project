@@ -10,18 +10,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import edu.neu.madsea.kristenhyman.data.ToDo;
-import edu.neu.madsea.kristenhyman.data.ToDoRepository;
-import edu.neu.madsea.kristenhyman.databinding.ActivityNewToDoBinding;
+import edu.neu.madsea.kristenhyman.databinding.ActivityNewProjectBinding;
 
 
 /**
  *  Adapted from Adrienne
  *  https://github.com/ahope/cs5520_project/tree/main/todo-list
  */
-public class NewToDoActivity extends AppCompatActivity {
+public class NewProjectActivity extends AppCompatActivity {
 
-    private ToDoViewModel toDoViewModel;
+    private ProjectViewModel projectViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +28,15 @@ public class NewToDoActivity extends AppCompatActivity {
 
         // use binding to set the data for the view
         // jetpack generates this class for you for binding
-        ActivityNewToDoBinding binding = ActivityNewToDoBinding.inflate(getLayoutInflater());
+        ActivityNewProjectBinding binding = ActivityNewProjectBinding.inflate(getLayoutInflater());
         // this is the instance associated w/ the binding to make sure i'm using hte asme
         // viewmodel and layout between activity and layout
         setContentView(binding.getRoot());
 
         // Get an instance to the shared ViewModel
         // this must be the same between the activity and the layout
-        toDoViewModel = new ViewModelProvider(this).get(ToDoViewModel.class);
-        binding.setViewmodel(toDoViewModel);
+        projectViewModel = new ViewModelProvider(this).get(ProjectViewModel.class);
+        binding.setViewmodel(projectViewModel);
 
         // finding the create button
         Button button = (Button)findViewById(R.id.buttonCreate);
@@ -46,11 +44,12 @@ public class NewToDoActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toDoViewModel.createTodo();
+                projectViewModel.createProject();
             }
         });
 
-        toDoViewModel.getTodoCreated().observe(this, new Observer<Boolean>() {
+        // "no such instance projectViewModel
+        projectViewModel.getProjectCreated().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean todoCreated) {
                 if (todoCreated) {
@@ -64,13 +63,13 @@ public class NewToDoActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toDoViewModel.cancelNewTodo();
+                projectViewModel.cancelNewTodo();
             }
         });
         binding.buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NewToDoActivity.this, MainActivity_ListView.class);
+                Intent intent = new Intent(NewProjectActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

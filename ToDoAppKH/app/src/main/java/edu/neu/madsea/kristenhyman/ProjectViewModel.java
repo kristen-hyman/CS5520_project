@@ -1,91 +1,77 @@
 package edu.neu.madsea.kristenhyman;
 
 import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.work.Data;
-import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import edu.neu.madsea.kristenhyman.data.TimeConverter;
-import edu.neu.madsea.kristenhyman.data.ToDo;
-import edu.neu.madsea.kristenhyman.data.ToDoRepository;
+import edu.neu.madsea.kristenhyman.data.Project;
+import edu.neu.madsea.kristenhyman.data.ProjectRepository;
 
-
-/**
- * Adapted from Adrienne
- * https://github.com/ahope/cs5520_project/tree/main/todo-list
- */
-public class ToDoViewModel extends AndroidViewModel {
+public class ProjectViewModel extends AndroidViewModel {
 
     private WorkManager mWorkManager;
-    public MutableLiveData<String> todoTitle = new MutableLiveData<>();
-    public MutableLiveData<String> todoDescription = new MutableLiveData<>();
-    public MutableLiveData<String> todoDueDate = new MutableLiveData<>();
+    public MutableLiveData<String> projectTitle = new MutableLiveData<>();
+    public MutableLiveData<String> projectDescription = new MutableLiveData<>();
+    public MutableLiveData<String> projectDate = new MutableLiveData<>();
     public MutableLiveData<String> todoReminderDate = new MutableLiveData<>();
 
-    private MutableLiveData<Boolean> todoCreated = new MutableLiveData<>();
-    private ToDoRepository repository;
-    private final LiveData<List<ToDo>> mAllToDos;
+    private MutableLiveData<Boolean> projectCreated = new MutableLiveData<>();
+    private ProjectRepository repository;
+    private final LiveData<List<Project>> mAllToDos;
 
-    public ToDoViewModel(Application app) {
+    public ProjectViewModel(Application app) {
         super(app);
         mWorkManager = WorkManager.getInstance(app);
 
-        repository = ToDoRepository.getToDoRepository(app);
-        //todoTitle = savedStateHandle.get("title");
-        if (todoTitle == null) {
-            todoTitle = new MutableLiveData<>();
-            todoTitle.setValue("");
+        repository = ProjectRepository.getToDoRepository(app);
+        //projectTitle = savedStateHandle.get("title");
+        if (projectTitle == null) {
+            projectTitle = new MutableLiveData<>();
+            projectTitle.setValue("");
         }
-        // todoDescription = savedStateHandle.get("description");
-        if (todoDescription == null) {
-            todoDescription = new MutableLiveData<>();
-            todoDescription.setValue("");
+        // projectDescription = savedStateHandle.get("description");
+        if (projectDescription == null) {
+            projectDescription = new MutableLiveData<>();
+            projectDescription.setValue("");
         }
 
-        if (todoDueDate == null) {
-            todoDueDate = new MutableLiveData<>();
-            todoDueDate.setValue("");
+        if (projectDate == null) {
+            projectDate = new MutableLiveData<>();
+            projectDate.setValue("");
         }
 
         if (todoReminderDate == null) {
             todoReminderDate = new MutableLiveData<>();
             todoReminderDate.setValue("");
         }
-        mAllToDos = repository.getAllTodos();
-        todoCreated.setValue(Boolean.FALSE);
+        mAllToDos = repository.getAllProjects();
+        projectCreated.setValue(Boolean.FALSE);
     }
 
-    public LiveData<Boolean> getTodoCreated() {
-        return todoCreated;
+    public LiveData<Boolean> getProjectCreated() {
+        return projectCreated;
     }
 
-    public ToDo createTodo() {
-        ToDo createdTodo = ToDo.createTodo(todoTitle.getValue(), todoDescription.getValue(),
-                todoDueDate.getValue(),
+    public Project createProject() {
+        Project createdTodo = Project.createProject(projectTitle.getValue(), projectDescription.getValue(),
+                projectDate.getValue(),
                 todoReminderDate.getValue());
 
         repository.insert(createdTodo);
         // pass todo into schedule work method
-        ReminderWorker.scheduleWork(getApplication().getApplicationContext(), createdTodo);
+        // ReminderWorker.scheduleWork(getApplication().getApplicationContext(), createdTodo);
 
-        todoCreated.setValue(Boolean.TRUE);
+        projectCreated.setValue(Boolean.TRUE);
 
         return createdTodo;
     }
 
-    public void deleteTodo(ToDo todoToDelete) {
+    public void deleteTodo(Project todoToDelete) {
 
         repository.delete(todoToDelete);
 
@@ -94,7 +80,7 @@ public class ToDoViewModel extends AndroidViewModel {
 
     }
 
-    public LiveData<List<ToDo>> getAllToDos() {
+    public LiveData<List<Project>> getAllToDos() {
         return mAllToDos;
     }
 

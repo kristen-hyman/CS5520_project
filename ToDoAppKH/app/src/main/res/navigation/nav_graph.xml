@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:label="fragment"
-        class ="edu.neu.madsea.kristenhyman.ToDoListFragment"
-        tools:layout="@layout/fragment_to_do_list"/>
+        android:label="Photographer Tonight"
+        android:name ="edu.neu.madsea.kristenhyman.ProjectListFragment"
+        tools:layout="@layout/fragment_project_list"/>
 </navigation>
