@@ -51,6 +51,7 @@ public class ProjectActivity extends AppCompatActivity {
 
         // this moreso belongs to the item - todoviewholder
         secondBinding = ProjectItemViewBinding.inflate(getLayoutInflater());
+        /**
         secondBinding.deleteTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +59,7 @@ public class ProjectActivity extends AppCompatActivity {
                 //delete task
             }
         });
+         */
     }
 
     @Override

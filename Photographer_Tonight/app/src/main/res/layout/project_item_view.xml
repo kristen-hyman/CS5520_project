@@ -10,6 +10,7 @@
         <variable name="todoTask" type="edu.neu.madsea.kristenhyman.data.Project"/>
         <variable name="todoTitle" type="String"/>
         <variable name="todoDetail" type="String"/>
+        <variable name="date" type="String"/>
     </data>
 
     <!--    This Layout is utilized by both the ToDoItemView (a Custom UI Component) and
@@ -45,28 +46,25 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/detailDateTextView"
+            android:layout_width="303dp"
+            android:layout_height="20dp"
+            android:background="@android:color/background_light"
+            android:text="@{todoTask.date}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintStart_toEndOf="@+id/checkBox2"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+        <TextView
             android:id="@+id/detailTextView"
             android:layout_width="303dp"
             android:layout_height="20dp"
             android:background="@android:color/background_light"
             android:text="@{todoTask.description}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintEnd_toStartOf="@+id/deleteTaskButton"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/checkBox2"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/detailDateTextView" />
 
-        <ImageButton
-            android:id="@+id/deleteTaskButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:onClick="deleteTodo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/titleTextView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
