@@ -6,13 +6,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.neu.madsea.kristenhyman.data.ProjectItemRecyclerViewAdapter;
 import edu.neu.madsea.kristenhyman.databinding.ActivityProjectListViewBinding;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
 /**
  * adapted from Adrienne
  * https://github.com/ahope/cs5520_project/blob/main/todo-list/app/src/main/java/edu/northeastern/cs5520/todo_adrienne
@@ -41,9 +50,11 @@ public class ProjectActivity_ListView extends AppCompatActivity {
         final ProjectItemRecyclerViewAdapter adapter =
                 new ProjectItemRecyclerViewAdapter();
 
-        mProjectViewModel.getAllToDos().observe(this, todos -> {
+        mProjectViewModel.getAllGigs().observe(this, todos -> {
             adapter.submitList(todos);
         });
+
+
 
         binding.recyclerViewMain.setAdapter(adapter);
 

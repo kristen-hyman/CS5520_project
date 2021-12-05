@@ -26,7 +26,7 @@ public class ProjectViewModel extends AndroidViewModel {
 
     private MutableLiveData<Boolean> projectCreated = new MutableLiveData<>();
     private ProjectRepository repository;
-    private final LiveData<List<Project>> mAllToDos;
+    private final LiveData<List<Project>> mAllGigs;
 
     public ProjectViewModel(Application app) {
         super(app);
@@ -77,7 +77,7 @@ public class ProjectViewModel extends AndroidViewModel {
             projectEmail.setValue("");
         }
 
-        mAllToDos = repository.getAllProjects();
+        mAllGigs = repository.getAllProjects();
         projectCreated.setValue(Boolean.FALSE);
     }
 
@@ -86,16 +86,16 @@ public class ProjectViewModel extends AndroidViewModel {
     }
 
     public Project createProject() {
-        Project createdTodo = Project.createProject(projectArtist.getValue(), projectDescription.getValue(),
+        Project createdProject = Project.createProject(projectArtist.getValue(), projectDescription.getValue(),
                 projectDate.getValue(), projectBudget.getValue());
 
-        repository.insert(createdTodo);
+        repository.insert(createdProject);
         // pass todo into schedule work method
-        // ReminderWorker.scheduleWork(getApplication().getApplicationContext(), createdTodo);
+        // ReminderWorker.scheduleWork(getApplication().getApplicationContext(), createdProject);
 
         projectCreated.setValue(Boolean.TRUE);
 
-        return createdTodo;
+        return createdProject;
     }
 
     public void deleteTodo(Project todoToDelete) {
@@ -107,8 +107,8 @@ public class ProjectViewModel extends AndroidViewModel {
 
     }
 
-    public LiveData<List<Project>> getAllToDos() {
-        return mAllToDos;
+    public LiveData<List<Project>> getAllGigs() {
+        return mAllGigs;
     }
 
     public void cancelNewTodo() {

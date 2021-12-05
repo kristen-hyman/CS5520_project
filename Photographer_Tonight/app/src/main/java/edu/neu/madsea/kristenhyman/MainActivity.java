@@ -1,6 +1,5 @@
 package edu.neu.madsea.kristenhyman;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,14 +7,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.neu.madsea.kristenhyman.data.ProjectItemRecyclerViewAdapter;
 import edu.neu.madsea.kristenhyman.databinding.ActivityMainBinding;
-import edu.neu.madsea.kristenhyman.databinding.ActivityProjectListViewBinding;
+
 /**
  * adapted from Adrienne
  * https://github.com/ahope/cs5520_project/blob/main/todo-list/app/src/main/java/edu/northeastern/cs5520/todo_adrienne/
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
          final ProjectItemRecyclerViewAdapter adapter =
          new ProjectItemRecyclerViewAdapter();
 
-         mProjectViewModel.getAllToDos().observe(this, todos -> {
+         mProjectViewModel.getAllGigs().observe(this, todos -> {
          adapter.submitList(todos);
          });
 

@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {Project.class}, version = 4, exportSchema = false)
+@Database(entities = {Project.class}, version = 5, exportSchema = false)
 abstract public class ProjectDatabase extends RoomDatabase {
 
     abstract ProjectDao projectDao();

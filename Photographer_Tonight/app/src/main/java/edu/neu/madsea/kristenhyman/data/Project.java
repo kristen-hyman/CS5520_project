@@ -13,27 +13,31 @@ public class Project {
     @ColumnInfo(name = "artistName")
     private String artistName;
 
-    @ColumnInfo(name = "description")
-    private String description;
-
+    @ColumnInfo(name = "budget")
+    private Float budget;
 
     @ColumnInfo(name = "date")
     private String date;
 
-    @ColumnInfo(name = "reminderDate")
-    private String reminderDate;
+    @ColumnInfo(name = "time")
+    private String time;
 
-    @ColumnInfo(name = "venue")
-    private String venue;
+    @ColumnInfo(name = "description")
+    private String description;
 
     @ColumnInfo(name = "emailAddress")
     private String emailAddress;
 
+    @ColumnInfo(name = "location")
+    private String location;
+
+
     @ColumnInfo(name = "projectType")
     private String projectType;
 
-    @ColumnInfo(name = "budget")
-    private Float budget;
+    @ColumnInfo(name = "venue")
+    private String venue;
+
 
     public String getArtistName() {
         return artistName;
@@ -61,12 +65,21 @@ public class Project {
     }
 
 
-    public String reminderDate() {
-        return reminderDate;
+    public String getLocation() {
+        return location;
     }
 
-    public void setReminderDate(String reminderDate) {
-        this.reminderDate = reminderDate;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getVenue() {
@@ -80,31 +93,38 @@ public class Project {
     public String getEmailAddress() {
         return emailAddress;
     }
+
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
 
-    public String getProjectType() { return projectType; }
+    public String getProjectType() {
+        return projectType;
+    }
+
     public void setProjectType(String projectType) {
         this.projectType = projectType;
     }
 
 
-    public Float getBudget() { return budget; }
+    public Float getBudget() {
+        return budget;
+    }
+
     public void setBudget(Float budget) {
         this.budget = budget;
     }
 
 
-    public static Project createProject(String artistName, String description, String dueDate, String reminderDate) {
+    public static Project createProject(String artistName, String description, String dueDate, String time) {
         Project gig = new Project();
         gig.setBudget(5.00f);
         gig.setVenue("boston");
         gig.setEmailAddress("kristen@gmail");
         gig.setProjectType("videography");
-        gig.setReminderDate("12/02/2021");
-
+        gig.setLocation("NYC");
+        gig.setTime(time);
         gig.setArtistName(artistName);
         gig.setDescription(description);
         gig.setDate(dueDate);
