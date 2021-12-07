@@ -42,22 +42,32 @@ public class APIDaoImpl {
             public void onResponse(Call call, Response response) {
                 try {
                     ResponseBody responseBody = response.body();
+                    String responseBodyString = responseBody.string();
+                    Log.i("data", responseBodyString);
 
-                    Log.i("data", responseBody.string());
+                    Gson gson = new Gson();
+                    APIResponseResult responseResult = gson.fromJson(responseBodyString, APIResponseResult.class);
+                    List<Project> projects = responseResult.getAPIResponse().getData();
+
+                    Log.i("APIResponseResult", responseResult.toString());
+
+                    // Log.i("PROJECTS:", responseResult.getData().toString());
+                    gigsList.postValue(projects);
 
                      try {
+                         //Log.i("data", responseBody.string());
                      //JSONArray jArray = new JSONArray(responseBody);
-                     Gson gson = new Gson();
-                     ResponseResult responseResult = gson.fromJson(response.body().string(), ResponseResult.class);
-                     Log.i("responseResult", responseResult.getData().toString());
+                         // Gson gson = new Gson();
+                     // ResponseResult responseResult = gson.fromJson(response.body().string(), ResponseResult.class);
+                     //Log.i("responseResult", responseResult.getData().toString());
 
                      //get the list of projects out of responseResult to post as the gigList
-                     gigsList.postValue(responseResult.getData());
+                     // gigsList.postValue(responseResult.getData());
 
                      }
 
                      catch (Exception e){
-                     Log.e("JSONException", "Error: " + e.toString());
+                     Log.e("JSONException found", "Error: " + e.toString());
                      }
 
 

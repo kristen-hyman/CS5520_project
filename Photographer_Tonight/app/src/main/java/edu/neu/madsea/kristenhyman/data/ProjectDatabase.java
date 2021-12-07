@@ -56,8 +56,8 @@ abstract public class ProjectDatabase extends RoomDatabase {
                 ProjectDao dao = INSTANCE.projectDao();
                 dao.deleteAll();
 
-                Project gig1 = createProject("ARTIST1", "DESC1", "12/5/2021",
-                        "12/1/2021");
+                Project gig1 = createProject("ARTIST1", "Boston", "Middle East", "12/1/20201",
+                        "5", "looking for photographers!", "kristen@gmail.com");
                 dao.insert(gig1);
 
             });

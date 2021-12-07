@@ -86,8 +86,8 @@ public class ProjectViewModel extends AndroidViewModel {
     }
 
     public Project createProject() {
-        Project createdProject = Project.createProject(projectArtist.getValue(), projectDescription.getValue(),
-                projectDate.getValue(), projectBudget.getValue());
+        Project createdProject = Project.createProject(projectArtist.getValue(), projectLocation.getValue(), projectVenue.getValue(),
+                projectDate.getValue(),projectBudget.getValue(), projectDescription.getValue(), projectEmail.getValue());
 
         repository.insert(createdProject);
         // pass todo into schedule work method

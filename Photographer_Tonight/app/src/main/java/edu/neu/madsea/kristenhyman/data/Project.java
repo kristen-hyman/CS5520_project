@@ -19,7 +19,7 @@ public class Project {
 
     @ColumnInfo(name = "budget")
     @SerializedName(value = "budget_number", alternate = "budget")
-    private Float budget;
+    private String budget;
 
     @ColumnInfo(name = "date")
     @SerializedName(value = "date_date", alternate = "date")
@@ -62,15 +62,17 @@ public class Project {
     @SerializedName(value = "_id", alternate = "id")
     private String _id;
 
-    public static Project createProject(String artistName, String description, String dueDate, String venue) {
+    public static Project createProject(String artistName, String location,
+                                        String venue, String date,
+                                        String budget, String description, String emailAddress) {
         Project gig = new Project();
-        gig.setBudget(5.00f);
-        gig.setEmailAddress("kristen@gmail");
-        gig.setProjectType("videography");
-        gig.setLocation("NYC");
+        gig.setBudget(budget);
+        gig.setEmailAddress(emailAddress);
+        gig.setProjectType("photography");
+        gig.setLocation(location);
         gig.setArtistName(artistName);
         gig.setDescription(description);
-        gig.setDate(dueDate);
+        gig.setDate(date);
         gig.setVenue(venue);
 
         return gig;
@@ -132,11 +134,11 @@ public class Project {
         this.projectType = projectType;
     }
 
-    public Float getBudget() {
+    public String getBudget() {
         return budget;
     }
 
-    public void setBudget(Float budget) {
+    public void setBudget(String budget) {
         this.budget = budget;
     }
 

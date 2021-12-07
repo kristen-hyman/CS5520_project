@@ -27,10 +27,7 @@ public class ProjectRepository {
         mAllProjects = mAPIDaoImpl.getAllGigs();
     }
 
-    public void addFakeToDo() {
-        mProjectDao.insert(Project.createProject("Task todo 1", "do something, already",
-                "11/4/2021", "11/2/2021"));
-    }
+
 
 
     // Room executes all queries on a separate thread.
