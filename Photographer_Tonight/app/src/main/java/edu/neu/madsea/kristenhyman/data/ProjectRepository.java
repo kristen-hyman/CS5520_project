@@ -15,9 +15,16 @@ public class ProjectRepository {
     private List<Project> reminderProjects;
 
     ProjectRepository(Context context) {
-        db = ProjectDatabase.getDatabase(context);
-        mProjectDao = db.projectDao();
-        mAllProjects = mProjectDao.getAlphabetizedWords();
+
+        //create a new class that goes to get the get Request stuff APIREquest
+        // can have simliar interface as project Dao (this is the retreival functions etc)
+        // Dao is used to access DB, so my class will be used to access the API
+
+        //db = ProjectDatabase.getDatabase(context);
+
+
+        APIDaoImpl mAPIDaoImpl = new APIDaoImpl();
+        mAllProjects = mAPIDaoImpl.getAllGigs();
     }
 
     public void addFakeToDo() {
@@ -32,8 +39,7 @@ public class ProjectRepository {
         return mAllProjects;
     }
 
-
-    public static ProjectRepository getToDoRepository(Context app) {
+    public static ProjectRepository getProjectRepository(Context app) {
         if (singleton == null) {
             singleton = new ProjectRepository(app);
         }
@@ -42,7 +48,7 @@ public class ProjectRepository {
 
     public void insert(Project project) {
         ProjectDatabase.databaseWriteExecutor.execute(() -> {
-            mProjectDao.insert(project);
+           // mProjectDao.insert(project);
         });
     }
 

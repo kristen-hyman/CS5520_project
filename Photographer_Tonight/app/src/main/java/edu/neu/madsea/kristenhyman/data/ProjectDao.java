@@ -16,6 +16,10 @@ import java.util.List;
     // data has changed. Since we are getting all the contents of the database,
     // we are notified whenever any of the database contents have changed.
     @Query("SELECT * FROM project_table ORDER BY artistName ASC")
+    //this would be getGigs() return liveData of list of the gigs
+    // separate impl
+    //this method would go and do teh okhttp get request as teh JSON
+    // tell GSON to
     LiveData<List<Project>> getAlphabetizedWords();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

@@ -32,7 +32,7 @@ public class ProjectViewModel extends AndroidViewModel {
         super(app);
         mWorkManager = WorkManager.getInstance(app);
 
-        repository = ProjectRepository.getToDoRepository(app);
+        repository = ProjectRepository.getProjectRepository(app);
         //projectArtist = savedStateHandle.get("title");
         if (projectArtist == null) {
             projectArtist = new MutableLiveData<>();

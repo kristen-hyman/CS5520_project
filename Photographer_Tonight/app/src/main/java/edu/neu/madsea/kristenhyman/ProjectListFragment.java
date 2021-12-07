@@ -2,7 +2,6 @@ package edu.neu.madsea.kristenhyman;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +12,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.io.IOException;
 import java.util.List;
 
 import edu.neu.madsea.kristenhyman.data.ProjectItemRecyclerViewAdapter;
 import edu.neu.madsea.kristenhyman.data.ProjectRepository;
 import edu.neu.madsea.kristenhyman.data.Project;
 import edu.neu.madsea.kristenhyman.databinding.FragmentProjectListBinding;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 /**
  *  Adapted from Adrienne
@@ -42,7 +34,7 @@ public class ProjectListFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentProjectListBinding.inflate(inflater, container, false);
-        ProjectRepository repository = ProjectRepository.getToDoRepository(binding.getRoot().getContext());
+        ProjectRepository repository = ProjectRepository.getProjectRepository(binding.getRoot().getContext());
         LiveData<List<Project>> allProjects = repository.getAllProjects();
 
 
@@ -51,33 +43,7 @@ public class ProjectListFragment extends Fragment {
         //create adapter
         ProjectItemRecyclerViewAdapter adapter = new ProjectItemRecyclerViewAdapter();
 
-        // TODO: make sure repository.getAllProjects() is getting info from the API below
-        // TODO: Where to implement the get request below to pull in the data? (test API)
-        OkHttpClient client = new OkHttpClient();
-        Request get = new Request.Builder()
-                .url("https://reqres.in/api/users?page=2")
-                .build();
 
-        client.newCall(get).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) {
-                try {
-                    ResponseBody responseBody = response.body();
-                    if (!response.isSuccessful()) {
-                        throw new IOException("Unexpected code " + response);
-                    }
-
-                    Log.i("data", responseBody.string());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
         //observe allProjects because that is the LiveData. (populate list)
         //so when the data changes we can send this to the adapter to make the change on the view
