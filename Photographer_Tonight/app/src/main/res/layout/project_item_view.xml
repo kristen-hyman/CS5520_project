@@ -19,51 +19,139 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="168dp"
         android:background="@android:color/background_light">
 
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/venueTextView"
+            android:layout_width="176dp"
+            android:layout_height="27dp"
+            android:background="@android:color/background_light"
+            android:text="@{todoTask.venue}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.01"
+            app:layout_constraintStart_toEndOf="@+id/venue"
+            app:layout_constraintTop_toBottomOf="@+id/detailDateTextView" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="258dp"
+            android:layout_height="35dp"
+            android:background="@android:color/background_light"
+            android:text="@{todoTask.artistName}"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="302dp"
-            android:layout_height="35dp"
-            android:background="@android:color/background_light"
-            android:text="@{todoTask.artistName}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/checkBox2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/detailDateTextView"
-            android:layout_width="303dp"
-            android:layout_height="20dp"
+            android:layout_width="176dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="20dp"
             android:background="@android:color/background_light"
             android:text="@{todoTask.date}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintStart_toEndOf="@+id/checkBox2"
+            app:layout_constraintStart_toEndOf="@+id/Date"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+        <TextView
+            android:id="@+id/detailBudgetTextView"
+            android:layout_width="65dp"
+            android:layout_height="17dp"
+            android:background="@android:color/background_light"
+            android:text="@{todoTask.budget}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/budget"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
         <TextView
             android:id="@+id/detailTextView"
-            android:layout_width="303dp"
-            android:layout_height="20dp"
+            android:layout_width="352dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="4dp"
             android:background="@android:color/background_light"
             android:text="@{todoTask.description}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintStart_toEndOf="@+id/checkBox2"
-            app:layout_constraintTop_toBottomOf="@+id/detailDateTextView" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/details"
+            app:layout_constraintTop_toBottomOf="@+id/venueTextView" />
+
+        <TextView
+            android:id="@+id/emailTextView2"
+            android:layout_width="249dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="4dp"
+            android:background="@android:color/background_light"
+            android:text="@{todoTask.emailAddress}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.019"
+            app:layout_constraintStart_toEndOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/detailTextView" />
+
+        <TextView
+            android:id="@+id/Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/detailDateTextView" />
+
+        <TextView
+            android:id="@+id/details"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Details:  "
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/detailTextView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/venue" />
+
+        <TextView
+            android:id="@+id/venue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Venue:  "
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/detailTextView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Date" />
+
+        <TextView
+            android:id="@+id/budget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="Budget ($USD): "
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detailDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="53dp"
+            android:layout_height="wrap_content"
+            android:text="Email: "
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details"
+            app:layout_constraintVertical_bias="0.714"
+            tools:layout_editor_absoluteX="0dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
