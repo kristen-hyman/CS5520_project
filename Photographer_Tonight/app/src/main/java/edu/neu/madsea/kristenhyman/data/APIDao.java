@@ -13,7 +13,8 @@ public interface APIDao {
 
     LiveData<List<Project>> getAllGigs();
 
-    //LiveData<Project> postProject();
+    void postProject(Project project);
+
 
     }
 

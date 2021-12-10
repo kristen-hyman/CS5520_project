@@ -14,12 +14,17 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 public class APIDaoImpl {
+
+    String DEV_URL = "https://www.photographertonight.com/version-test/api/1.1/obj";
+    String PRODUCTION_URL = "https://www.photographertonight.com/api/1.1/obj/gig";
 
     LiveData<List<Project>> getAllGigs(){
 
@@ -27,7 +32,7 @@ public class APIDaoImpl {
 
         OkHttpClient client = new OkHttpClient();
         Request get = new Request.Builder()
-                .url("https://www.photographertonight.com/api/1.1/obj/gig")
+                .url(PRODUCTION_URL)
                 .method("GET", null)
                 .addHeader("Authorization", "Bearer 4e2ad17b442815098e0ea222774b0a78")
                 .build();
@@ -54,24 +59,6 @@ public class APIDaoImpl {
                     // Log.i("PROJECTS:", responseResult.getData().toString());
                     gigsList.postValue(projects);
 
-                     try {
-                         //Log.i("data", responseBody.string());
-                     //JSONArray jArray = new JSONArray(responseBody);
-                         // Gson gson = new Gson();
-                     // ResponseResult responseResult = gson.fromJson(response.body().string(), ResponseResult.class);
-                     //Log.i("responseResult", responseResult.getData().toString());
-
-                     //get the list of projects out of responseResult to post as the gigList
-                     // gigsList.postValue(responseResult.getData());
-
-                     }
-
-                     catch (Exception e){
-                     Log.e("JSONException found", "Error: " + e.toString());
-                     }
-
-
-
                     if (!response.isSuccessful()) {
                         throw new IOException("Unexpected code " + response);
                     }
@@ -86,5 +73,36 @@ public class APIDaoImpl {
 
         return gigsList;
 }
+
+    void postProject(Project project) {
+
+        try {
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                    .build();
+            MediaType mediaType = MediaType.parse("text/plain");
+
+            Gson gson = new Gson();
+            String jsonInString = gson.toJson(project);
+
+            RequestBody body = RequestBody.create(mediaType, jsonInString);
+
+            Log.i("project body toString(): ", body.toString());
+
+            Request request = new Request.Builder()
+                    // .url(PRODUCTION_URL)
+                    .url(DEV_URL)
+                    .method("PUT", body)
+                    .addHeader("Authorization", "Bearer 4e2ad17b442815098e0ea222774b0a78")
+                    .build();
+
+            Response response = client.newCall(request).execute();
+        }
+    catch (Exception e) {
+            System.out.print("error posting new gig to API");
+            e.printStackTrace();
+    }
+
+        return;
+    }
 
 }

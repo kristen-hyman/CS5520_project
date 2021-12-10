@@ -4,8 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Entity(tableName = "project_table")
 public class Project {
@@ -22,8 +28,9 @@ public class Project {
     private String budget;
 
     @ColumnInfo(name = "date")
+    @TypeConverters({TimeStampConverter.class})
     @SerializedName(value = "date_date", alternate = "date")
-    private String date;
+    private LocalDateTime date;
 
     @ColumnInfo(name = "description")
     @SerializedName(value = "description_text", alternate = "description")
@@ -46,36 +53,26 @@ public class Project {
     @SerializedName(value = "venue_text", alternate = "venue")
     private String venue;
 
-    @ColumnInfo(name = "Created Date")
-    @SerializedName(value = "Created Date", alternate = "createdDate")
-    private String createdDate;
-
-    @ColumnInfo(name = "Created By")
-    @SerializedName(value = "Created By", alternate = "createdBy")
-    private String createdBy;
-
-    @ColumnInfo(name = "Modified Date")
-    @SerializedName(value = "Modified Date", alternate = "modifiedDate")
-    private String modifiedDate;
-
-    @ColumnInfo(name = "_id")
-    @SerializedName(value = "_id", alternate = "id")
-    private String _id;
 
     public static Project createProject(String artistName, String location,
-                                        String venue, String date,
+                                        String venue, LocalDateTime date,
                                         String budget, String description, String emailAddress) {
         Project gig = new Project();
         gig.setBudget(budget);
         gig.setEmailAddress(emailAddress);
-        gig.setProjectType("photography");
+        gig.setProjectType("Photography");
         gig.setLocation(location);
         gig.setArtistName(artistName);
         gig.setDescription(description);
         gig.setDate(date);
         gig.setVenue(venue);
 
+
         return gig;
+    }
+
+    public String getDateAsString() {
+        return TimeStampConverter.fromLocalDateTime(this.date);
     }
 
     public String getArtistName() {
@@ -94,11 +91,11 @@ public class Project {
         this.description = description;
     }
 
-    public String getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -141,38 +138,5 @@ public class Project {
     public void setBudget(String budget) {
         this.budget = budget;
     }
-
-    public String getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public String getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(String modified_date) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
-    }
-
 
 }

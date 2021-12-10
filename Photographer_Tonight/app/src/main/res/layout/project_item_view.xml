@@ -10,7 +10,7 @@
         <variable name="todoTask" type="edu.neu.madsea.kristenhyman.data.Project"/>
         <variable name="todoTitle" type="String"/>
         <variable name="todoDetail" type="String"/>
-        <variable name="date" type="String"/>
+
     </data>
 
     <!--    This Layout is utilized by both the ToDoItemView (a Custom UI Component) and
@@ -53,7 +53,7 @@
             android:layout_height="27dp"
             android:layout_marginStart="20dp"
             android:background="@android:color/background_light"
-            android:text="@{todoTask.date}"
+            android:text="@{todoTask.getDateAsString}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintStart_toEndOf="@+id/Date"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
@@ -144,14 +144,14 @@
 
         <TextView
             android:id="@+id/email"
-            android:layout_width="53dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Email: "
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/details"
-            app:layout_constraintVertical_bias="0.714"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintVertical_bias="0.714" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

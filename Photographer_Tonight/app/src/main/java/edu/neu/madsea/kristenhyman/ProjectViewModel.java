@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.work.WorkManager;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import edu.neu.madsea.kristenhyman.data.Project;
@@ -51,11 +53,8 @@ public class ProjectViewModel extends AndroidViewModel {
         }
         if (projectDate == null) {
             projectDate = new MutableLiveData<>();
-            projectDate.setValue("");
+            projectDate.setValue(LocalDateTime.now().toString());
         }
-
-
-
 
         if (projectTime == null) {
             projectTime = new MutableLiveData<>();
@@ -87,11 +86,9 @@ public class ProjectViewModel extends AndroidViewModel {
 
     public Project createProject() {
         Project createdProject = Project.createProject(projectArtist.getValue(), projectLocation.getValue(), projectVenue.getValue(),
-                projectDate.getValue(),projectBudget.getValue(), projectDescription.getValue(), projectEmail.getValue());
+                LocalDateTime.parse(projectDate.getValue()),projectBudget.getValue(), projectDescription.getValue(), projectEmail.getValue());
 
         repository.insert(createdProject);
-        // pass todo into schedule work method
-        // ReminderWorker.scheduleWork(getApplication().getApplicationContext(), createdProject);
 
         projectCreated.setValue(Boolean.TRUE);
 
@@ -100,7 +97,7 @@ public class ProjectViewModel extends AndroidViewModel {
 
     public void deleteTodo(Project todoToDelete) {
 
-        repository.delete(todoToDelete);
+        //repository.delete(todoToDelete);
 
         // remove todo from scheduled work...
         // ReminderWorker.scheduleWork(getApplication().getApplicationContext(), createdTodo);

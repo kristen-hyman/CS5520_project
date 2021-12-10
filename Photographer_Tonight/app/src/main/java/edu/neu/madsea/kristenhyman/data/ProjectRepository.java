@@ -10,7 +10,8 @@ import java.util.List;
 public class ProjectRepository {
     private static ProjectRepository singleton;
     private LiveData<List<Project>> mAllProjects;
-    private ProjectDao mProjectDao;
+    // private ProjectDao mProjectDao;
+    private APIDaoImpl ProjectAPIDao;
     private ProjectDatabase db;
     private List<Project> reminderProjects;
 
@@ -27,9 +28,6 @@ public class ProjectRepository {
         mAllProjects = mAPIDaoImpl.getAllGigs();
     }
 
-
-
-
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
     public LiveData<List<Project>> getAllProjects() {
@@ -45,13 +43,10 @@ public class ProjectRepository {
 
     public void insert(Project project) {
         ProjectDatabase.databaseWriteExecutor.execute(() -> {
+
+            ProjectAPIDao.postProject(project);
            // mProjectDao.insert(project);
         });
     }
 
-    public void delete(Project project) {
-        ProjectDatabase.databaseWriteExecutor.execute(() -> {
-            mProjectDao.deleteByTaskTitle(project.getArtistName());
-        });
-    }
 }
