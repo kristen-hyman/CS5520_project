@@ -44,7 +44,8 @@ public class ProjectRepository {
     public void insert(Project project) {
         ProjectDatabase.databaseWriteExecutor.execute(() -> {
 
-            ProjectAPIDao.postProject(project);
+            APIDaoImpl mAPIDaoImpl = new APIDaoImpl();
+            mAPIDaoImpl.postProject(project);
            // mProjectDao.insert(project);
         });
     }
