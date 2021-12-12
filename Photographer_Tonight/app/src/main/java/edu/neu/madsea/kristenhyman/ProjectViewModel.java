@@ -9,6 +9,7 @@ import androidx.work.WorkManager;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import edu.neu.madsea.kristenhyman.data.Project;
@@ -85,8 +86,19 @@ public class ProjectViewModel extends AndroidViewModel {
     }
 
     public Project createProject() {
-        Project createdProject = Project.createProject(projectArtist.getValue(), projectLocation.getValue(), projectVenue.getValue(),
-                LocalDateTime.parse(projectDate.getValue()),projectBudget.getValue(), projectDescription.getValue(), projectEmail.getValue());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy|hh:mma");
+
+        LocalDateTime date = LocalDateTime.parse(projectDate.getValue() + "|" + projectTime.getValue() + "PM", formatter);
+
+        Project createdProject = Project.createProject(
+                projectArtist.getValue(),
+                projectLocation.getValue(),
+                projectVenue.getValue(),
+                date,
+//                LocalDateTime.parse(projectDate.getValue()),
+                projectBudget.getValue(),
+                projectDescription.getValue(),
+                projectEmail.getValue());
 
         repository.insert(createdProject);
 
