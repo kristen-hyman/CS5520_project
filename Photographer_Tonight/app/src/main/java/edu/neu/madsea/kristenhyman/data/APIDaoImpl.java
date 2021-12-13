@@ -11,8 +11,9 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
-
-import org.json.JSONArray;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -31,7 +32,7 @@ import okhttp3.ResponseBody;
 
 public class APIDaoImpl {
 
-    String DEV_URL = "https://www.photographertonight.com/version-test/api/1.1/obj";
+    String DEV_URL = "https://www.photographertonight.com/version-test/api/1.1/obj/gig";
     String PRODUCTION_URL = "https://www.photographertonight.com/api/1.1/obj/gig";
 
     LiveData<List<Project>> getAllGigs(){
@@ -58,8 +59,6 @@ public class APIDaoImpl {
                     String responseBodyString = responseBody.string();
                     Log.i("data", responseBodyString);
 
-//                    Gson gson = new Gson();
-//                    2021-12-18T22:30:00.000Z
                     Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
                         @Override
                         public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
@@ -83,8 +82,8 @@ public class APIDaoImpl {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                response.body().close();
             }
-
         });
 
         return gigsList;
@@ -92,26 +91,36 @@ public class APIDaoImpl {
 
     void postProject(Project project) {
 
+
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
-            MediaType mediaType = MediaType.parse("text/plain");
+            MediaType mediaType = MediaType.parse("application/json");
 
-            Gson gson = new Gson();
+            // update so that the GSON takes the date/time as  2021-12-18T22:30:00.000Z format
+
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer());
+            Gson gson = gsonBuilder.setPrettyPrinting().create();
             String jsonInString = gson.toJson(project);
+
+            Log.i("project date", project.getDate().toString());
+            Log.i("jsonInString: ", jsonInString);
 
             RequestBody body = RequestBody.create(mediaType, jsonInString);
 
             Log.i("project body toString(): ", body.toString());
 
             Request request = new Request.Builder()
-                    // .url(PRODUCTION_URL)
+                    //.url(PRODUCTION_URL)
                     .url(DEV_URL)
-                    .method("PUT", body)
+                    .method("POST", body)
                     .addHeader("Authorization", "Bearer 4e2ad17b442815098e0ea222774b0a78")
+                    .addHeader("Content-Type", "application/json")
                     .build();
 
             Response response = client.newCall(request).execute();
+            response.body().close();
         }
     catch (Exception e) {
             System.out.print("error posting new gig to API");

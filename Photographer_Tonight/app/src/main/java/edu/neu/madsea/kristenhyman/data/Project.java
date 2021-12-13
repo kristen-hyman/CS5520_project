@@ -60,13 +60,13 @@ public class Project {
         Project gig = new Project();
         gig.setBudget(budget);
         gig.setEmailAddress(emailAddress);
-        gig.setProjectType("Photography");
+        gig.setProjectType("Concert Photography");
         gig.setLocation(location);
         gig.setArtistName(artistName);
         gig.setDescription(description);
+        //gig.setDate("2021-12-16T01:30:00.000Z");
         gig.setDate(date);
         gig.setVenue(venue);
-
 
         return gig;
     }
