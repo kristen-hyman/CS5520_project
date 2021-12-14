@@ -72,7 +72,12 @@ public class Project {
     }
 
     public String getDateAsString() {
-        return TimeStampConverter.fromLocalDateTime(this.date);
+
+        // create a different formatter
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/YYYY HH:mm");
+        String text = this.date.format(formatter);
+
+        return text;
     }
 
     public String getArtistName() {

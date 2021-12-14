@@ -95,7 +95,7 @@ public class ProjectViewModel extends AndroidViewModel {
                 projectLocation.getValue(),
                 projectVenue.getValue(),
                 date,
-//                LocalDateTime.parse(projectDate.getValue()),
+//              LocalDateTime.parse(projectDate.getValue()),
                 projectBudget.getValue(),
                 projectDescription.getValue(),
                 projectEmail.getValue());
@@ -107,21 +107,13 @@ public class ProjectViewModel extends AndroidViewModel {
         return createdProject;
     }
 
-    public void deleteTodo(Project todoToDelete) {
-
-        //repository.delete(todoToDelete);
-
-        // remove todo from scheduled work...
-        // ReminderWorker.scheduleWork(getApplication().getApplicationContext(), createdTodo);
-
-    }
 
     public LiveData<List<Project>> getAllGigs() {
         return mAllGigs;
     }
-
     public void cancelNewTodo() {
         //return to mainActivity
 
     }
+
 }

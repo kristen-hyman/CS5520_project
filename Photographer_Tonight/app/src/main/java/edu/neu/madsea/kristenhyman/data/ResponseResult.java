@@ -1,6 +1,11 @@
 package edu.neu.madsea.kristenhyman.data;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResponseResult {
 
@@ -18,8 +23,16 @@ public class ResponseResult {
     }
 
     public List<Project> getData() {
-        return results;
+        List<Project> filteredList;
+                filteredList = results.stream()
+                .filter(gig -> gig.getDate().isAfter(LocalDateTime.now()))
+                .collect(Collectors.toList());
+
+
+        return filteredList;
+
     }
+
 
     public void setData(List<Project> results) {
         this.results = results;
