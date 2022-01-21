@@ -78,7 +78,6 @@ public class APIDaoImpl {
                         throw new IOException("Unexpected code " + response);
                     }
 
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -96,8 +95,6 @@ public class APIDaoImpl {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
-
-            // update so that the GSON takes the date/time as  2021-12-18T22:30:00.000Z format
 
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer());

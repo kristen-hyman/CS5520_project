@@ -59,19 +59,6 @@ public class ProjectListFragment extends Fragment {
         // Get an instance to the shared ViewModel
         // this must be the same between the activity and the layout
         projectViewModel = new ViewModelProvider(this).get(ProjectViewModel.class);
-        /**
-        binding.setViewmodel(projectViewModel);
-        // finding the delete button
-        ImageButton button = (ImageButton)findViewById(R.id.deleteTaskButton);
-
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                projectViewModel.createProject();
-            }
-        });
-         */
 
         return binding.getRoot();
     }

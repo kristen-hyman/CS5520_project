@@ -23,13 +23,16 @@ public class ResponseResult {
     }
 
     public List<Project> getData() {
+
         List<Project> filteredList;
                 filteredList = results.stream()
                 .filter(gig -> gig.getDate().isAfter(LocalDateTime.now()))
                 .collect(Collectors.toList());
 
 
+
         return filteredList;
+        //return results;
 
     }
 
